@@ -9,6 +9,7 @@ Run the following commands to set up the project.
 Now, in the App.css file erase everything and copy-paste the code below
 '
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/6JrYL0h1xeVGxRLdvVzbeO/326cc0db65fea6b946f5834cc331c751/Header.png'
+publish_status: 'published'
 ---
 
 I had to make an image slider for a project and I found out that there is no ready to use cool, basic, image slider. So I went ahead and made one using react-slick.
@@ -41,8 +42,8 @@ Now, in the App.css file erase everything and copy-paste the code below
 ```css
 /* App.css */
 
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 .App {
   text-align: center;
@@ -98,12 +99,12 @@ And here is the ImageSlider component.
 ```jsx
 // src/components/ImageSlider.js
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // 1.
-import Slider from "react-slick";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Slider from 'react-slick';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
-import "./ImageSlider.css";
+import './ImageSlider.css';
 
 // 2.
 const NextArrow = ({ onClick }) => {
@@ -123,17 +124,17 @@ const PrevArrow = ({ onClick }) => {
 };
 
 const ImageSlider = ({ images, slidesToShow = 3 }) => {
-	// 3.
+  // 3.
   const [imageIndex, setImageIndex] = useState(0);
 
-	// 4.
+  // 4.
   const settings = {
     centerMode: true,
     infinite: true,
     dots: false,
     speed: 300,
     slidesToShow: slidesToShow,
-    centerPadding: "0",
+    centerPadding: '0',
     swipeToSlide: true,
     focusOnSelect: true,
     nextArrow: <NextArrow onClick />,
@@ -157,14 +158,14 @@ const ImageSlider = ({ images, slidesToShow = 3 }) => {
     ],
   };
 
-	// 5.
+  // 5.
   const templateImages = images.map((image, idx) => {
     return (
       <div
-        className={idx === imageIndex ? "activeSlide" : "slide"}
+        className={idx === imageIndex ? 'activeSlide' : 'slide'}
         key={image.id}
       >
-        <div className="slideWrapper">
+        <div className='slideWrapper'>
           {image.code ? image.code : <img src={image.src} alt={image.alt} />}
         </div>
       </div>
@@ -195,66 +196,66 @@ This code for the slider takes in the data in a format as shown below
 export const IMAGES = [
   {
     id: 1,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 2,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 3,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 4,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 5,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 6,
-    src: "/images/image.png",
-    alt: "Placeholder image",
+    src: '/images/image.png',
+    alt: 'Placeholder image',
   },
 ];
 
 export const LARGE_IMAGES = [
   {
     id: 1,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 2,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 3,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 4,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 5,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
   {
     id: 6,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
 ];
 
@@ -263,11 +264,11 @@ export const VIDEOS = [
     id: 1,
     code: (
       <iframe
-        title="vid1"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/A63UxsQsEbU"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title='vid1'
+        width='560'
+        height='315'
+        src='https://www.youtube.com/embed/A63UxsQsEbU'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       ></iframe>
     ),
   },
@@ -275,11 +276,11 @@ export const VIDEOS = [
     id: 2,
     code: (
       <iframe
-        title="vid2"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/Z5iWr6Srsj8"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title='vid2'
+        width='560'
+        height='315'
+        src='https://www.youtube.com/embed/Z5iWr6Srsj8'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       ></iframe>
     ),
   },
@@ -287,11 +288,11 @@ export const VIDEOS = [
     id: 3,
     code: (
       <iframe
-        title="vid3"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/WRkmpqTluI8"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title='vid3'
+        width='560'
+        height='315'
+        src='https://www.youtube.com/embed/WRkmpqTluI8'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       ></iframe>
     ),
   },
@@ -299,11 +300,11 @@ export const VIDEOS = [
     id: 4,
     code: (
       <iframe
-        title="vid4"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/vyVpRiqOvt4"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title='vid4'
+        width='560'
+        height='315'
+        src='https://www.youtube.com/embed/vyVpRiqOvt4'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
       ></iframe>
     ),
   },
@@ -318,10 +319,10 @@ BTW, if you are wondering that why I am referencing the images in the src attrib
 export const LARGE_IMAGES = [
   {
     id: 1,
-    src: "/images/large_image.png",
-    alt: "Placeholder image",
+    src: '/images/large_image.png',
+    alt: 'Placeholder image',
   },
-]
+];
 ```
 
 It is because the images are placed in the public directory.
@@ -335,10 +336,10 @@ public/images/......
 ```jsx
 // App.js
 
-import "./App.css";
-import ImageSlider from "./components/ImageSlider";
+import './App.css';
+import ImageSlider from './components/ImageSlider';
 
-import { IMAGES, VIDEOS, LARGE_IMAGES } from "./data/data";
+import { IMAGES, VIDEOS, LARGE_IMAGES } from './data/data';
 
 function App() {
   return (
@@ -358,9 +359,11 @@ function App() {
 
 export default App;
 ```
+
 Live Link: [https://7etlk.csb.app/](https://7etlk.csb.app/)
 
 Github Repo: [https://github.com/holdmypotion/react-3d-image-slider](https://github.com/holdmypotion/react-3d-image-slider)
+
 #### Attention!
 
 [Vlad Tansky](https://twitter.com/vltansky) implemented a version similar to this image slider using a well maintained JavaScript library [Swiper JS](https://swiperjs.com/). I definitely recommend this repository

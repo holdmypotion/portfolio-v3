@@ -4,7 +4,7 @@ import {
   markdownToHtml,
 } from './markdown';
 
-export function getAllProjects() {
+export function getAllProjects(includeDrafts = false) {
   const slugs = getAllMarkdownFiles('projects');
   const projects = slugs.map((slug) => {
     const { frontmatter } = getMarkdownContent('projects', slug);
@@ -15,8 +15,17 @@ export function getAllProjects() {
     };
   });
 
+  // Filter by publish_status unless includeDrafts is true
+  const filteredProjects = includeDrafts
+    ? projects
+    : projects.filter((project) => {
+        // Default to 'published' if publish_status is not specified (backward compatibility)
+        const publishStatus = project.publish_status || 'published';
+        return publishStatus === 'published';
+      });
+
   // Sort projects by featured status, then by status
-  return projects.sort((a, b) => {
+  return filteredProjects.sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
 
@@ -25,7 +34,7 @@ export function getAllProjects() {
   });
 }
 
-export async function getProjectBySlug(slug) {
+export async function getProjectBySlug(slug, includeDrafts = false) {
   // First, try to find the project by frontmatter slug
   const allSlugs = getAllMarkdownFiles('projects');
   let filename = null;
@@ -35,6 +44,13 @@ export async function getProjectBySlug(slug) {
     try {
       const { frontmatter } = getMarkdownContent('projects', fileSlug);
       if (frontmatter.slug === slug || fileSlug === slug) {
+        // Check publish_status unless includeDrafts is true
+        if (!includeDrafts) {
+          const publishStatus = frontmatter.publish_status || 'published';
+          if (publishStatus !== 'published') {
+            continue; // Skip this project if it's not published
+          }
+        }
         filename = fileSlug;
         break;
       }
@@ -55,4 +71,9 @@ export async function getProjectBySlug(slug) {
     frontmatter,
     content: htmlContent,
   };
+}
+
+// Helper function to get all projects including drafts (useful for admin/preview)
+export function getAllProjectsIncludingDrafts() {
+  return getAllProjects(true);
 }

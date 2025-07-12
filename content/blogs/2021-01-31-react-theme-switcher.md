@@ -14,6 +14,7 @@ a pages folder and then a Home.js file within
 a styles folder and then a globalStyles.js file ad a homeStyles.js file.
 The end structure should look something like this.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/MJaFmXudcNkJg1e6F15oV/87f50ea6a4c8e4c22340050688141269/Screenshot_2021-01-31_221956.png'
+publish_status: 'published'
 ---
 
 In this article, we'll be creating a theme switcher using styled-components, context API, and of course, react.
@@ -52,18 +53,18 @@ Inside the globalContext.js file, paste the below code.
 ```jsx
 //globalContext.js
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export const GlobalContext = React.createContext({
-  currentTheme: "",
+  currentTheme: '',
   themeSwitchHandler: () => {},
 });
 
 const GlobalContextProvider = (props) => {
   const [currentTheme, setCurrentTheme] = useState(
-    window.localStorage.getItem("theme") == null
-      ? "light"
-      : window.localStorage.getItem("theme")
+    window.localStorage.getItem('theme') == null
+      ? 'light'
+      : window.localStorage.getItem('theme'),
   );
 
   const themeSwitchHandler = (themeType) => {
@@ -102,23 +103,23 @@ Paste the code below into the index.js file.
 ```jsx
 // index.js
 
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import GlobalContextProvider from "./context/globalContext";
+import GlobalContextProvider from './context/globalContext';
 
 ReactDOM.render(
   <React.StrictMode>
-		{/* Wrap the App component with the GlobalContextProvider
+    {/* Wrap the App component with the GlobalContextProvider
 				created in the previous code snippet */}
     <GlobalContextProvider>
       <App />
     </GlobalContextProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -134,11 +135,11 @@ Paste the code below in the "src/components/Layout.js" file.
 ```jsx
 // Layout.js
 
-import React, { useContext } from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { normalize } from "styled-normalize";
+import React, { useContext } from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { normalize } from 'styled-normalize';
 
-import { GlobalContext } from "../context/globalContext";
+import { GlobalContext } from '../context/globalContext';
 
 // 1.
 const GlobalStyle = createGlobalStyle`
@@ -163,29 +164,29 @@ const GlobalStyle = createGlobalStyle`
 // 2.
 const Layout = ({ children }) => {
   const darkTheme = {
-    background: "#111827",
-    secondaryBackground: "#374151",
-    text: "#F9FAFB",
-    button: "#E5E7EB",
+    background: '#111827',
+    secondaryBackground: '#374151',
+    text: '#F9FAFB',
+    button: '#E5E7EB',
   };
 
   const lightTheme = {
-    background: "#F9FAFB",
-    secondaryBackground: "#E5E7EB",
-    text: "#111827",
-    button: "#374151",
+    background: '#F9FAFB',
+    secondaryBackground: '#E5E7EB',
+    text: '#111827',
+    button: '#374151',
   };
 
-	// 3.
+  // 3.
   const currentTheme = useContext(GlobalContext);
 
-	// 4.
+  // 4.
   let theme;
   switch (currentTheme.theme) {
-    case "dark":
+    case 'dark':
       theme = darkTheme;
       break;
-    case "light":
+    case 'light':
       theme = lightTheme;
       break;
     default:
@@ -217,7 +218,7 @@ I like to divide my styled-components on the basis of pages. As some of the styl
 ```jsx
 // globalStyles.js
 
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -255,7 +256,7 @@ Page-specific styles
 ```jsx
 // homestyles.js
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavBar = styled.div`
   background-color: ${(props) => props.theme.secondaryBackground};
@@ -289,7 +290,7 @@ export const SwitchButton = styled.label`
 
   span:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
@@ -427,15 +428,15 @@ Let's break it down:
 
 1. We are fetching our context from the globalContext using the useContext() hook.
 2. The "onChange" prop of the switch button toggles the theme between dark and light.
-(A better way would be to create a separate button to call for different themes as we already have a switch-case statement to select the theme in the Layout.js file.)
+   (A better way would be to create a separate button to call for different themes as we already have a switch-case statement to select the theme in the Layout.js file.)
 
 Finally, import this component into the App.js file
 
 ```jsx
-import Home from "./pages/Home";
+import Home from './pages/Home';
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Home />
     </div>
   );

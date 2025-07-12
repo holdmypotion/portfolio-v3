@@ -5,6 +5,7 @@ tags: ['react', 'javacript', 'webdev', 'reactnative', 'tech']
 slug: 'using-react-context-api-like-a-pro'
 description: 'If you''ve been hearing the term "Context API" and feel totally confused about it (like me, some days ago) or you have no clue what this even means, look no further! I''ve got you covered (for the most part, I believe)'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/5Wvm6I1wA7tLS9R1EAXUd8/e28144333acfa6f62d45fb1c7aca1f6a/headerImage.png'
+publish_status: 'published'
 ---
 
 If you've been hearing the term "Context API" and feel totally confused about it (like me, some days ago) or you have no clue what this even means, look no further! I've got you covered (for the most part, I believe)
@@ -14,7 +15,7 @@ If you've been hearing the term "Context API" and feel totally confused about it
 One thing to note: You can very well work without Context API by using normal "prop drilling". Context API does only one thing and that is "it reduces coupling between non-related components".
 
 React Components should only hold the logic necessary for their operation.
-One component, one role. (Mind you that "role" highly depends on the type of task you are creating the component for) 
+One component, one role. (Mind you that "role" highly depends on the type of task you are creating the component for)
 
 Each react program has some components that hold certain states on which the program depend on. These states are passed from "parent components" to "children components" through "props".
 
@@ -31,28 +32,26 @@ Here the SearchBar.js Component, down in the component tree, has a state that ta
 ```jsx
 // SearchBar.js
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import styles from "./SearchBar.module.css";
-import SearchLogo from "../../assets/search.svg";
+import styles from './SearchBar.module.css';
+import SearchLogo from '../../assets/search.svg';
 
 const SearchBar = (props) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div className={styles.searchBar}>
       <input
-        placeholder="Search"
-        type="text"
+        placeholder='Search'
+        type='text'
         className={styles.input}
         onChange={(e) => setSearchQuery(e.target.value)}
         value={searchQuery}
       />
-      <Link
-        to="/search-result"
-      >
-        <img src={SearchLogo} alt="Search Logo | magnifying glass" />
+      <Link to='/search-result'>
+        <img src={SearchLogo} alt='Search Logo | magnifying glass' />
       </Link>
     </div>
   );
@@ -66,7 +65,7 @@ The state ("searchQuery") is actually what we need in the SearchResult.js compon
 ## Ways to achieve this
 
 1. Define the state and setState function in App.js, pass them as props to Layout.js, pass them further to Header.js, at last pass them to the SearchBar.js Component.
-Now use, the setState function to travel all the way back to App.js component and change the state.
+   Now use, the setState function to travel all the way back to App.js component and change the state.
 
 OR
 
@@ -83,12 +82,12 @@ Like so...
 ```jsx
 // index.js
 
-import React from "react";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import SearchContextProvider from "./context/search-context";
+import SearchContextProvider from './context/search-context';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -96,7 +95,7 @@ ReactDOM.render(
       <App />
     </SearchContextProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -115,18 +114,18 @@ Whatever you put in the value prop, it becomes available to the children compone
 Now you can use the "query" state and "searchHandler" function in any component inside the App component
 
 ```jsx
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // query is the state
 // SearchHandler is a function for changing the state.
 export const SearchContext = React.createContext({
-  query: "",
+  query: '',
   searchHandler: () => {},
 });
 
 // Defining a simple HOC component
 const SearchContextProvider = (props) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const searchHandler = (query) => {
     setQuery(query);
@@ -177,20 +176,20 @@ const SearchBar = (props) => {
 }
 ```
 
-SearchBar.js using the context API looks something like this 
+SearchBar.js using the context API looks something like this
 
 ```jsx
 // SearchBar.js
 
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import { SearchContext } from "../../context/search-context";
-import styles from "./SearchBar.module.css";
-import SearchLogo from "../../assets/search.svg";
+import { SearchContext } from '../../context/search-context';
+import styles from './SearchBar.module.css';
+import SearchLogo from '../../assets/search.svg';
 
 const SearchBar = (props) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const searchContext = useContext(SearchContext);
 
   const searchQueryHandler = () => {
@@ -200,17 +199,14 @@ const SearchBar = (props) => {
   return (
     <div className={styles.searchBar}>
       <input
-        placeholder="Search"
-        type="text"
+        placeholder='Search'
+        type='text'
         className={styles.input}
         onChange={(e) => setSearchQuery(e.target.value)}
         value={searchQuery}
       />
-      <Link
-        to="/search-result"
-        onClick={searchQueryHandler}
-      >
-        <img src={SearchLogo} alt="Search Logo | magnifying glass" />
+      <Link to='/search-result' onClick={searchQueryHandler}>
+        <img src={SearchLogo} alt='Search Logo | magnifying glass' />
       </Link>
     </div>
   );
@@ -226,11 +222,11 @@ Now we could use the same state wherever we would like
 ```jsx
 // SearchResult.js
 
-import React, { useContext } from "react";
-import { SearchContext } from "../../context/search-context";
+import React, { useContext } from 'react';
+import { SearchContext } from '../../context/search-context';
 
-import styles from "./SearchResult.module.css";
-import ProductSection from "../../components/ProductSection/ProductSection";
+import styles from './SearchResult.module.css';
+import ProductSection from '../../components/ProductSection/ProductSection';
 
 const SearchResult = ({ products, ...props }) => {
   const searchContext = useContext(SearchContext);
@@ -255,7 +251,7 @@ const SearchResult = ({ products, ...props }) => {
         {filteredProducts && (
           <ProductSection
             products={filteredProducts}
-            sectionSlug="search-result"
+            sectionSlug='search-result'
           />
         )}
       </div>

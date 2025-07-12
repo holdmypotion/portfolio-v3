@@ -33,9 +33,12 @@ export default function Contact() {
       <div className='space-y-1 text-sm'>
         <div>
           <span className='text-custom-fg'>email:</span>{' '}
-          <span className='text-custom-soft-white'>
+          <a
+            href={`mailto:${profile.contact.email}`}
+            className='text-custom-soft-white hover:text-custom-bright-fg transition-colors'
+          >
             {profile.contact.email}
-          </span>
+          </a>
         </div>
         <div>
           <span className='text-custom-fg'>github:</span>{' '}

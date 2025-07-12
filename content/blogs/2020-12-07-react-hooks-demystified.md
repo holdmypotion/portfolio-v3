@@ -8,6 +8,7 @@ description: 'In React, sharing functionalities across components without data c
 When a component uses a hook, it takes an independent copy of that functional logic.
 Hence, two components using the same hook, have absolutely no idea about each other.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/4ILybpQ4a6Q11MesM3r6Wv/d32de2463efaf00461f801c58050ecfd/react_hook_demystified.png'
+publish_status: 'published'
 ---
 
 In React, sharing functionalities across components without data coupling (sharing of unnecessary data or state across components) is done using hooks.
@@ -20,7 +21,7 @@ Hence, two components using the same hook, have absolutely no idea about each ot
 A simple function that is used to preserve certain values from getting refreshed on each render cycle.
 
 ```jsx
-const [stateName, setStateName] = useState(initialState)
+const [stateName, setStateName] = useState(initialState);
 // initialState could be anything: null, [/*Array*/], {/*Object*/}, etc.
 ```
 
@@ -29,12 +30,17 @@ It takes the initial state as argument and returns an array, having the first el
 # useEffect()
 
 ```jsx
-useEffect(() => {
+useEffect(
+  () => {
     // Statements to execute
     return () => {
       // Statements to clean up the not needed logic
     };
-  }, [/*state on which the execution depends*/]);
+  },
+  [
+    /*state on which the execution depends*/
+  ],
+);
 ```
 
 Very crucial hook that is highly modifiable. Used to execute some statements (logic), if particular state changes.
@@ -63,19 +69,16 @@ On each render the whole business logic in react components is created again. Bu
 
 ```jsx
 const functionName = useCallback(() => {
-	/*Function Body*/
-}, [])
+  /*Function Body*/
+}, []);
 ```
 
 It takes in 2 argument, first being the function and second a list of dependencies on which the recreation of the function depends.
 
 ```jsx
-const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
-  [a, b],
-);
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
 ```
 
 One potential use case:
@@ -86,7 +89,14 @@ Hence use useCallback, and save the function from recreation.
 # useMemo()
 
 ```jsx
-useMemo(()=>{/*function*/}, [/*List of dependencies*/])
+useMemo(
+  () => {
+    /*function*/
+  },
+  [
+    /*List of dependencies*/
+  ],
+);
 ```
 
 Memoisation in Computer Science means optimizing a computer program by storing the results of expensive function calls and returning the cached result if the input is same.
@@ -97,18 +107,14 @@ So you would use it somewhat like this
 
 ```jsx
 const productList = useMemo(() => {
-    return (
-      <ProducttList
-        products={products}
-      />
-    );
-  }, [products]);
+  return <ProducttList products={products} />;
+}, [products]);
 ```
 
 This saves the "ProductList" component from unnecessary re-renders.
 
 **Just a suggestion!!**
-useMemo() and useCallback() are hooks used for optimization and you can very well work without them. So focus on writing the app and later dive into optimizations. 
+useMemo() and useCallback() are hooks used for optimization and you can very well work without them. So focus on writing the app and later dive into optimizations.
 
 # useRef()
 
@@ -118,7 +124,7 @@ But this is probably the simplest.
 This is just a react way of saying
 
 ```jsx
-document.querySelector("whateverElement");
+document.querySelector('whateverElement');
 ```
 
 right right!! This is so straight forward.
@@ -132,7 +138,7 @@ function TextInputWithFocusButton() {
   };
   return (
     <>
-      <input ref={inputEl} type="text" />
+      <input ref={inputEl} type='text' />
       <button onClick={onButtonClick}>Focus the input</button>
     </>
   );
@@ -148,17 +154,17 @@ function TextInputWithFocusButton() {
 # useReducer()
 
 ```jsx
-const [stateName, dispatch] = useReducer(reducerName, initialState)
+const [stateName, dispatch] = useReducer(reducerName, initialState);
 ```
 
 It takes in two arguments:
 
-1. a reducer (We'll come to this later) 
-2.  initial state
+1. a reducer (We'll come to this later)
+2. initial state
 
 And returns an array with two elements
 
-1. state 
+1. state
 2. dispatcher
 
 If you have any idea about redux, this would be a piece of cake.
@@ -171,13 +177,13 @@ When we dispatch an action we, basically ask the reducer to execute particular "
 
 ```jsx
 const filteredIngredientsHandler = (filteredIngredients) => {
-    dispatch({ type: 'SET', ingredients: filteredIngredients });
-  };
+  dispatch({ type: 'SET', ingredients: filteredIngredients });
+};
 ```
 
 "dispatch" takes in an object where the "type" attribute describes the type of updation and other attributes depending upon the need of the updation.
 
-Now, let's check the reducer. 
+Now, let's check the reducer.
 
 It takes in two argument,
 
@@ -205,7 +211,7 @@ const Ingredients = () => {
 ```
 
 So useReducer() does the same thing as useState() (Holding the state and updating it), but does that in a more elegant and explicit way.
-This lets you separate the business logic and different types of state updation logic. 
+This lets you separate the business logic and different types of state updation logic.
 
 # useContext()
 
@@ -225,4 +231,5 @@ const App = props => {
 ```
 
 ### Thank you for reading!
+
 Leave you views.

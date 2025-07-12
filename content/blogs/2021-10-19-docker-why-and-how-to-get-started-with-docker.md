@@ -9,6 +9,7 @@ In simple terms, a container is an isolated environment just for running a parti
 
 More on that later. First, let''s see why do we need docker or containerization in particular.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/6nzWC6dWuaFTZyCJmqmycj/665df1f46b3ef5a47f54cd621c7230a1/cover.jpg'
+publish_status: 'published'
 ---
 
 # What is Docker?
@@ -21,7 +22,7 @@ More on that later. First, let's see why do we need docker or containerization i
 
 # Why Docker?
 
-The era of cloud computing sprung up a challenge of managing and maintaining the application over various cloud and development environments. Regardless of the underlying platform the application should remain stable and operational. But because of the 'unknown' associated with running the application on a foreign platform, possibility of environment-specific bug increases.  A solution to this is to pack and ship the application along with the dependencies, configuration files and libraries that the application needs to run and operate efficiently. This process is called containerization. Which docker does brilliantly.
+The era of cloud computing sprung up a challenge of managing and maintaining the application over various cloud and development environments. Regardless of the underlying platform the application should remain stable and operational. But because of the 'unknown' associated with running the application on a foreign platform, possibility of environment-specific bug increases. A solution to this is to pack and ship the application along with the dependencies, configuration files and libraries that the application needs to run and operate efficiently. This process is called containerization. Which docker does brilliantly.
 
 # What is an image and a container?
 

@@ -4,7 +4,7 @@ import {
   markdownToHtml,
 } from './markdown';
 
-export function getAllBlogs() {
+export function getAllBlogs(includeDrafts = false) {
   const slugs = getAllMarkdownFiles('blogs');
   const blogs = slugs.map((slug) => {
     const { frontmatter } = getMarkdownContent('blogs', slug);
@@ -15,11 +15,20 @@ export function getAllBlogs() {
     };
   });
 
+  // Filter by publish_status unless includeDrafts is true
+  const filteredBlogs = includeDrafts
+    ? blogs
+    : blogs.filter((blog) => {
+        // Default to 'published' if publish_status is not specified (backward compatibility)
+        const publishStatus = blog.publish_status || 'published';
+        return publishStatus === 'published';
+      });
+
   // Sort blogs by date (newest first)
-  return blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
-export async function getBlogBySlug(slug) {
+export async function getBlogBySlug(slug, includeDrafts = false) {
   // First, try to find the blog by frontmatter slug
   const allSlugs = getAllMarkdownFiles('blogs');
   let filename = null;
@@ -29,6 +38,13 @@ export async function getBlogBySlug(slug) {
     try {
       const { frontmatter } = getMarkdownContent('blogs', fileSlug);
       if (frontmatter.slug === slug || fileSlug === slug) {
+        // Check publish_status unless includeDrafts is true
+        if (!includeDrafts) {
+          const publishStatus = frontmatter.publish_status || 'published';
+          if (publishStatus !== 'published') {
+            continue; // Skip this blog if it's not published
+          }
+        }
         filename = fileSlug;
         break;
       }
@@ -51,8 +67,13 @@ export async function getBlogBySlug(slug) {
   };
 }
 
-export function getBlogTags() {
-  const blogs = getAllBlogs();
+export function getBlogTags(includeDrafts = false) {
+  const blogs = getAllBlogs(includeDrafts);
   const allTags = blogs.flatMap((blog) => blog.tags || []);
   return [...new Set(allTags)];
+}
+
+// Helper function to get all blogs including drafts (useful for admin/preview)
+export function getAllBlogsIncludingDrafts() {
+  return getAllBlogs(true);
 }

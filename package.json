@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "^14.0.0",
     "prismjs": "^1.30.0",

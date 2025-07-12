@@ -11,6 +11,7 @@ Of course you can go all out and add all the fancy toggle filters, advanced sear
 
 Hope you enjoy!'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/4Ddjn5rzHqzaQLbpYtl9Av/df34ee25873c879433634d04b0586a57/Implement_Search_Bar_in_React_for_Ecommerce_Website.png'
+publish_status: 'published'
 ---
 
 I observed that in eCommerce websites filtering products based on certain filters or user inputs is a super common thing.
@@ -76,51 +77,51 @@ SearchBarSection.js up-until now!
 ```jsx
 // SearchBarSection.js
 
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
 const SearchBarSection = () => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      title: "Check Textured Coat",
-      category: "Coat",
-      price: "175.4",
-      tags: "coat check textured camel brown long sleeves buttoned cuffs",
+      title: 'Check Textured Coat',
+      category: 'Coat',
+      price: '175.4',
+      tags: 'coat check textured camel brown long sleeves buttoned cuffs',
     },
     {
       id: 2,
-      title: "Contrast Check Coat",
-      category: "Coat",
-      price: "155.4",
-      tags: "coat camel black grey marl lapel collar hip flap pockets",
+      title: 'Contrast Check Coat',
+      category: 'Coat',
+      price: '155.4',
+      tags: 'coat camel black grey marl lapel collar hip flap pockets',
     },
     {
       id: 3,
-      title: "White Coat",
-      category: "Coat",
-      price: "125.4",
-      tags: "coat camel white short sleeves double-breasted button",
+      title: 'White Coat',
+      category: 'Coat',
+      price: '125.4',
+      tags: 'coat camel white short sleeves double-breasted button',
     },
     {
       id: 4,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain purple long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain purple long baggy hood',
     },
     {
       id: 5,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain black long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain black long baggy hood',
     },
     {
       id: 6,
-      title: "Basic short Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain gray grey short hood",
+      title: 'Basic short Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain gray grey short hood',
     },
   ]);
   return <div></div>;
@@ -140,7 +141,7 @@ App.js
 ```jsx
 // App.js
 
-import SearchBarSection from "./Projects/SearchBarSection/SearchBarSection";
+import SearchBarSection from './Projects/SearchBarSection/SearchBarSection';
 
 function App() {
   return (
@@ -159,28 +160,28 @@ Just the UI of the search bar. We'll implement the input functionalities in the 
 
 ```html
 return (
-    <div className="searchBarSection">
-      <div class="searchBar">
-        <input className="input" />
-        <button className="button">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  );
+<div className="searchBarSection">
+  <div class="searchBar">
+    <input className="input" />
+    <button className="button">
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+    </button>
+  </div>
+</div>
+);
 ```
 
 SearchBarSection.js up-until now!
@@ -188,71 +189,71 @@ SearchBarSection.js up-until now!
 ```jsx
 // SearchBarSection.js
 
-import React, {useState} from "react";
-import "./SearchBarSection.css";
+import React, { useState } from 'react';
+import './SearchBarSection.css';
 
 const SearchBarSection = () => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      title: "Check Textured Coat",
-      category: "Coat",
-      price: "175.4",
-      tags: "coat check textured camel brown long sleeves buttoned cuffs",
+      title: 'Check Textured Coat',
+      category: 'Coat',
+      price: '175.4',
+      tags: 'coat check textured camel brown long sleeves buttoned cuffs',
     },
     {
       id: 2,
-      title: "Contrast Check Coat",
-      category: "Coat",
-      price: "155.4",
-      tags: "coat camel black grey marl lapel collar hip flap pockets",
+      title: 'Contrast Check Coat',
+      category: 'Coat',
+      price: '155.4',
+      tags: 'coat camel black grey marl lapel collar hip flap pockets',
     },
     {
       id: 3,
-      title: "White Coat",
-      category: "Coat",
-      price: "125.4",
-      tags: "coat camel white short sleeves double-breasted button",
+      title: 'White Coat',
+      category: 'Coat',
+      price: '125.4',
+      tags: 'coat camel white short sleeves double-breasted button',
     },
     {
       id: 4,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain purple long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain purple long baggy hood',
     },
     {
       id: 5,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain black long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain black long baggy hood',
     },
     {
       id: 6,
-      title: "Basic short Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain gray grey short hood",
+      title: 'Basic short Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain gray grey short hood',
     },
   ]);
   return (
-    <div className="searchBarSection">
-      <div class="searchBar">
-        <input className="input" />
-        <button className="button">
+    <div className='searchBarSection'>
+      <div class='searchBar'>
+        <input className='input' />
+        <button className='button'>
           <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            className='w-6 h-6'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
             ></path>
           </svg>
         </button>
@@ -305,94 +306,94 @@ So we'll be displaying the products WITHOUT IMAGES.
 ```html
 <div className="display">
   {products.map((product) => (
-    <div className="product">
-      <h6>{product.category}</h6>
-      <h3>{product.title}</h3>
-      <h5>{product.price}</h5>
-    </div>
+  <div className="product">
+    <h6>{product.category}</h6>
+    <h3>{product.title}</h3>
+    <h5>{product.price}</h5>
+  </div>
   ))}
 </div>
 ```
 
 We are not yet filtering the products based on search input and hence we see the whole list.
-We'll do that in the next section. 
+We'll do that in the next section.
 
 SearchBarSection.js up until now!
 
 ```jsx
-import React, {useState} from "react";
-import "./SearchBarSection.css";
+import React, { useState } from 'react';
+import './SearchBarSection.css';
 
 const SearchBarSection = () => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      title: "Check Textured Coat",
-      category: "Coat",
-      price: "175.4",
-      tags: "coat check textured camel brown long sleeves buttoned cuffs",
+      title: 'Check Textured Coat',
+      category: 'Coat',
+      price: '175.4',
+      tags: 'coat check textured camel brown long sleeves buttoned cuffs',
     },
     {
       id: 2,
-      title: "Contrast Check Coat",
-      category: "Coat",
-      price: "155.4",
-      tags: "coat camel black grey marl lapel collar hip flap pockets",
+      title: 'Contrast Check Coat',
+      category: 'Coat',
+      price: '155.4',
+      tags: 'coat camel black grey marl lapel collar hip flap pockets',
     },
     {
       id: 3,
-      title: "White Coat",
-      category: "Coat",
-      price: "125.4",
-      tags: "coat camel white short sleeves double-breasted button",
+      title: 'White Coat',
+      category: 'Coat',
+      price: '125.4',
+      tags: 'coat camel white short sleeves double-breasted button',
     },
     {
       id: 4,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain purple long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain purple long baggy hood',
     },
     {
       id: 5,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain black long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain black long baggy hood',
     },
     {
       id: 6,
-      title: "Basic short Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain gray grey short hood",
+      title: 'Basic short Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain gray grey short hood',
     },
   ]);
 
   return (
-    <div className="searchBarSection">
-      <div class="searchBar">
-        <input className="input" />
-        <button className="button">
+    <div className='searchBarSection'>
+      <div class='searchBar'>
+        <input className='input' />
+        <button className='button'>
           <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            className='w-6 h-6'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
             ></path>
           </svg>
         </button>
       </div>
-      <div className="display">
+      <div className='display'>
         {products.map((product) => (
-          <div className="product">
+          <div className='product'>
             <h6>{product.category}</h6>
             <h3>{product.title}</h3>
             <h5>{product.price}</h5>
@@ -477,7 +478,7 @@ SearchBarSection.css up until now!
 The first thing we need to setup is a state to store the search input.
 
 ```jsx
-const [search, setSearch] = useState("");
+const [search, setSearch] = useState('');
 ```
 
 Now let's try to filter out the products based on this search state.
@@ -487,22 +488,21 @@ You can see some examples on [Array.prototype.includes()](https://developer.mozi
 
 ```jsx
 const filteredProducts = products.filter((product) => {
-    if (
-      product.tags.toLowerCase().includes(search) ||
-      product.title.toLowerCase().includes(search) ||
-      product.category.toLowerCase().includes(search)
-    ) {
-      return product;
-    }
-  });
+  if (
+    product.tags.toLowerCase().includes(search) ||
+    product.title.toLowerCase().includes(search) ||
+    product.category.toLowerCase().includes(search)
+  ) {
+    return product;
+  }
+});
 ```
 
 Perfect! We are almost done. Let's just quickly setup the onChange attribute on the input to set the "search" state on each character input.
 
 ```jsx
-
 <input
-  className="input"
+  className='input'
   onChange={(e) => {
     setSearch(e.target.value.toLowerCase());
   }}
@@ -512,9 +512,9 @@ Perfect! We are almost done. Let's just quickly setup the onChange attribute on 
 Last little tweak and it's done! Just replace the "product" in the "display" div with "filteredProducts"
 
 ```jsx
-<div className="display">
+<div className='display'>
   {filteredProducts.map((product) => (
-    <div className="product">
+    <div className='product'>
       <h6>{product.category}</h6>
       <h3>{product.title}</h3>
       <h5>{product.price}</h5>
@@ -526,56 +526,56 @@ Last little tweak and it's done! Just replace the "product" in the "display" div
 SearchBarSection.js final!
 
 ```jsx
-import React, {useState} from "react";
-import "./SearchBarSection.css";
+import React, { useState } from 'react';
+import './SearchBarSection.css';
 
 const SearchBarSection = () => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      title: "Check Textured Coat",
-      category: "Coat",
-      price: "175.4",
-      tags: "coat check textured camel brown long sleeves buttoned cuffs",
+      title: 'Check Textured Coat',
+      category: 'Coat',
+      price: '175.4',
+      tags: 'coat check textured camel brown long sleeves buttoned cuffs',
     },
     {
       id: 2,
-      title: "Contrast Check Coat",
-      category: "Coat",
-      price: "155.4",
-      tags: "coat camel black grey marl lapel collar hip flap pockets",
+      title: 'Contrast Check Coat',
+      category: 'Coat',
+      price: '155.4',
+      tags: 'coat camel black grey marl lapel collar hip flap pockets',
     },
     {
       id: 3,
-      title: "White Coat",
-      category: "Coat",
-      price: "125.4",
-      tags: "coat camel white short sleeves double-breasted button",
+      title: 'White Coat',
+      category: 'Coat',
+      price: '125.4',
+      tags: 'coat camel white short sleeves double-breasted button',
     },
     {
       id: 4,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain purple long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain purple long baggy hood',
     },
     {
       id: 5,
-      title: "Basic Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain black long baggy hood",
+      title: 'Basic Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain black long baggy hood',
     },
     {
       id: 6,
-      title: "Basic short Hoodie",
-      category: "Hoodies / SweatShirts",
-      price: "55.4",
-      tags: "hoodie solid plain gray grey short hood",
+      title: 'Basic short Hoodie',
+      category: 'Hoodies / SweatShirts',
+      price: '55.4',
+      tags: 'hoodie solid plain gray grey short hood',
     },
   ]);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const filteredProducts = products.filter((product) => {
     if (
@@ -588,34 +588,34 @@ const SearchBarSection = () => {
   });
 
   return (
-    <div className="searchBarSection">
-      <div class="searchBar">
+    <div className='searchBarSection'>
+      <div class='searchBar'>
         <input
-          className="input"
+          className='input'
           onChange={(e) => {
             setSearch(e.target.value.toLowerCase());
           }}
         />
-        <button className="button">
+        <button className='button'>
           <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            className='w-6 h-6'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
             ></path>
           </svg>
         </button>
       </div>
-      <div className="display">
+      <div className='display'>
         {filteredProducts.map((product) => (
-          <div className="product">
+          <div className='product'>
             <h6>{product.category}</h6>
             <h3>{product.title}</h3>
             <h5>{product.price}</h5>
@@ -684,7 +684,7 @@ App.js
 ```jsx
 // App.js
 
-import SearchBarSection from "./Projects/SearchBarSection/SearchBarSection";
+import SearchBarSection from './Projects/SearchBarSection/SearchBarSection';
 
 function App() {
   return (

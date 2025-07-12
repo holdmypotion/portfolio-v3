@@ -11,6 +11,7 @@ I have seen so many beginner Figma users just putting out things measuring dista
 
 In this example, I am using a 12-column grid with 120 horizontal margin and 120 gutter. But grid comes in all forms, so you can surely look into that.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/7gmfYoSG3XwKwQWH27B4ha/7d12312295171bf23c228f3a8f70d640/Car_Sharing_Website.png'
+publish_status: 'published'
 ---
 
 Here are some things that I didn't know when I started with Figma. These tips really boosted my workflow and got me really nice designs in the end.
@@ -28,7 +29,7 @@ In this example, I am using a 12-column grid with 120 horizontal margin and 120 
 
 I like to explain everything in my own words but I really like this description on Figma's official docs.
 
- ""
+""
 
 Components are elements you can reuse across your designs. They help to create and manage consistent designs across projects.
 
@@ -50,6 +51,7 @@ Don't be like me, learn components!
 ![Figma workspace screenshot](https://raw.githubusercontent.com/holdmypotion/Blog-Assets/main/2.png)
 
 ### Making a button component
+
 ![Making button component gif in Figma](https://raw.githubusercontent.com/holdmypotion/Blog-Assets/main/3.gif)
 
 # Save Local Styles
@@ -59,7 +61,7 @@ Saving Local Styles (Fill, Text, Stroke, Effect, etc, etc...) lets you apply the
 
 And by the way, this also prevents the loss of styles due to accidents.
 
-![Making and saving local text styles in Figma](https://raw.githubusercontent.com/holdmypotion/Blog-Assets/main/4%20(1).gif)
+![Making and saving local text styles in Figma](<https://raw.githubusercontent.com/holdmypotion/Blog-Assets/main/4%20(1).gif>)
 
 # Use Plugins and Built Components
 

@@ -3,8 +3,9 @@ title: 'Web Dev Baby Steps'
 date: '2020-06-26'
 tags: ['webdev', 'javascript', 'design', 'tech']
 slug: 'web-dev-baby-steps'
-description: 'I have had a lot of questions from people asking me about how to start their journey of becoming a web developer. So I managed to pull up a map for ya''ll to follow. Do let me know if you find this useful or also the other way around. Would love to have some critics helping me along the way!'
+description: "I have had a lot of questions from people asking me about how to start their journey of becoming a web developer. So I managed to pull up a map for ya'll to follow. Do let me know if you find this useful or also the other way around. Would love to have some critics helping me along the way!"
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/6eGgwkwzt2GJMBl8yAZo9K/70f25e09beff3fc29619c25f44d894b5/icerberg.png'
+publish_status: 'published'
 ---
 
 <!-- wp:paragraph -->

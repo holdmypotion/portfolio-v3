@@ -45,11 +45,11 @@ export default async function BlogPostPage({ params }) {
             <span>•</span>
             <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
           </div>
-          {blog.description && (
+          {/* {blog.description && (
             <p className='text-custom-comment mt-4 text-sm leading-relaxed'>
               {blog.description}
             </p>
-          )}
+          )} */}
         </header>
 
         <CodeHighlighter>

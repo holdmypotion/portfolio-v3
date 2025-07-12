@@ -21,13 +21,14 @@ Here is a simple Dot and Ring cursor.
 
 Paste this code in and scroll down for an explanation of this code.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/2Ix30PnA7rXpRrZofM9JOO/3e9eb09628894383c023118766769bff/image.png'
+publish_status: 'published'
 ---
 
 Just like the last article, this also focuses on a feature that I would like my portfolio to have. A custom cursor.
 I've noticed this treat a lot lately and I think it adds a bit of extra sass to the website.
 
 In this article, we'll be making a very basic custom cursor. This could act as a base setup for any kind of cursor you would want to create for your next project.
-So let's jump right into the  
+So let's jump right into the
 
 P.S.: Just React no other dependencies!!
 
@@ -53,10 +54,10 @@ yarn start
 
 I want to add more cursors to this repository in the future and hence I created a separate hook for getting the current position of the mouse.
 
-Paste this code in `src/hooks/useMousePosition.js` 
+Paste this code in `src/hooks/useMousePosition.js`
 
 ```jsx
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function useMousePosition() {
   const [mousePosition, setMousePosition] = useState({ x: null, y: null });
@@ -66,10 +67,10 @@ export default function useMousePosition() {
       const { clientX, clientY } = event;
       setMousePosition({ x: clientX, y: clientY });
     };
-    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener('mousemove', mouseMoveHandler);
 
     return () => {
-      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener('mousemove', mouseMoveHandler);
     };
   }, []);
 
@@ -87,24 +88,18 @@ Here is a simple Dot and Ring cursor.
 Paste this code in `src/components/DotRing/DotRing.js` and scroll down for an explanation of this code.
 
 ```jsx
-import "./DotRing.css";
-import useMousePosition from "../../hooks/useMousePosition";
+import './DotRing.css';
+import useMousePosition from '../../hooks/useMousePosition';
 
 const DotRing = () => {
-	// 1.
+  // 1.
   const { x, y } = useMousePosition();
   return (
     <>
-			{/* 2. */}
-      <div
-        style={{ left: `${x}px`, top: `${y}px` }}
-        className="ring"
-      ></div>
-			{/* 3. */}
-      <div
-        className="dot"
-        style={{ left: `${x}px`, top: `${y}px` }}
-      ></div>
+      {/* 2. */}
+      <div style={{ left: `${x}px`, top: `${y}px` }} className='ring'></div>
+      {/* 3. */}
+      <div className='dot' style={{ left: `${x}px`, top: `${y}px` }}></div>
     </>
   );
 };
@@ -164,15 +159,15 @@ The `will-change` property:
 ### App.js
 
 ```jsx
-import "./App.css";
-import DotRing from "./components/DotRing/DotRing";
+import './App.css';
+import DotRing from './components/DotRing/DotRing';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <DotRing />
-      <div className="container"></div>
-      <div className="container" style={{ background: "peachpuff" }}></div>
+      <div className='container'></div>
+      <div className='container' style={{ background: 'peachpuff' }}></div>
     </div>
   );
 }
@@ -215,15 +210,15 @@ We'll be doing just that in the next section.
 Paste this code in `src/context/mouse-context.js`
 
 ```jsx
-import React, { createContext, useState } from "react";
+import React, { createContext, useState } from 'react';
 
 export const MouseContext = createContext({
-  cursorType: "",
+  cursorType: '',
   cursorChangeHandler: () => {},
 });
 
 const MouseContextProvider = (props) => {
-  const [cursorType, setCursorType] = useState("");
+  const [cursorType, setCursorType] = useState('');
 
   const cursorChangeHandler = (cursorType) => {
     setCursorType(cursorType);
@@ -244,13 +239,13 @@ const MouseContextProvider = (props) => {
 export default MouseContextProvider;
 ```
 
-This is a very basic context that stores a string, `cursorType` , and a function, `cursorChangeHandler`  to change that string.
+This is a very basic context that stores a string, `cursorType` , and a function, `cursorChangeHandler` to change that string.
 
 BTW, if this is your first time tripping over context. Here is a link to my article on [Using React Context API Like a Pro](https://dev.to/holdmypotion/using-react-context-api-like-a-pro-13k5)
 
 ## The Big Idea
 
-The thing we are trying to accomplish using this context is to change the `cursorType`  by calling the `cursorChangeHandler()` on `onMouseEnter()` and `onMouseLeave()` events of the required element.
+The thing we are trying to accomplish using this context is to change the `cursorType` by calling the `cursorChangeHandler()` on `onMouseEnter()` and `onMouseLeave()` events of the required element.
 
 We'll later pass this `cursorType` as a className to the cursor and define a class for it in the CSS of our cursor.
 
@@ -261,12 +256,12 @@ We'll later pass this `cursorType` as a className to the cursor and define a cla
 Paste the code in `index.js`
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import MouseContextProvider from "./context/mouse-context";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import MouseContextProvider from './context/mouse-context';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -274,7 +269,7 @@ ReactDOM.render(
       <App />
     </MouseContextProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -288,25 +283,25 @@ reportWebVitals();
 Pas
 
 ```jsx
-import { useContext } from "react";
-import "./App.css";
-import DotRing from "./components/DotRing/DotRing";
-import { MouseContext } from "./context/mouse-context";
+import { useContext } from 'react';
+import './App.css';
+import DotRing from './components/DotRing/DotRing';
+import { MouseContext } from './context/mouse-context';
 
 function App() {
   const { cursorType, cursorChangeHandler } = useContext(MouseContext);
   return (
-    <div className="App">
+    <div className='App'>
       <DotRing />
-      <div className="container">
+      <div className='container'>
         <div
-          onMouseEnter={() => cursorChangeHandler("hovered")}
-          onMouseLeave={() => cursorChangeHandler("")}
+          onMouseEnter={() => cursorChangeHandler('hovered')}
+          onMouseLeave={() => cursorChangeHandler('')}
         >
           <h1>Hover over me</h1>
         </div>
       </div>
-      <div className="container" style={{ background: "peachpuff" }}></div>
+      <div className='container' style={{ background: 'peachpuff' }}></div>
     </div>
   );
 }
@@ -320,28 +315,28 @@ Now, we'll edit the DotRing.js and DotRing.css file to incorporate the new chang
 
 ### DotRing.js
 
-Overwrite the `src/components/DotRing/DotRing.js` with this code 
+Overwrite the `src/components/DotRing/DotRing.js` with this code
 
 ```jsx
-import React, { useContext } from "react";
-import "./DotRing.css";
-import useMousePosition from "../../hooks/useMousePosition";
-import { MouseContext } from "../../context/mouse-context";
+import React, { useContext } from 'react';
+import './DotRing.css';
+import useMousePosition from '../../hooks/useMousePosition';
+import { MouseContext } from '../../context/mouse-context';
 
 const DotRing = () => {
-	// 1.
+  // 1.
   const { cursorType, cursorChangeHandler } = useContext(MouseContext);
 
   const { x, y } = useMousePosition();
   return (
     <>
-			{/* 2. */}
+      {/* 2. */}
       <div
         style={{ left: `${x}px`, top: `${y}px` }}
-        className={"ring " + cursorType}
+        className={'ring ' + cursorType}
       ></div>
       <div
-        className={"dot " + cursorType}
+        className={'dot ' + cursorType}
         style={{ left: `${x}px`, top: `${y}px` }}
       ></div>
     </>

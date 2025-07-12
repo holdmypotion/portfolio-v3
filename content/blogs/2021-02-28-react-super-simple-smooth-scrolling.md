@@ -9,6 +9,7 @@ In this blog, we''ll be creating that together. So, let''s get right into it.
 So essentially what we are trying to do is to simply translate a div in Y-direction with a delay.
 This div will hold the full SPA (Single Page Application), resulting in an all-out smooth scrolling effect.'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/vHH3vDWCE5RnTqtn3x4es/3f5f7720f9adffbd543b9c26b3b6c820/carbon.png'
+publish_status: 'published'
 ---
 
 I have been wanting to redo my portfolio, and one of the major things I wanted it to have was smooth scrolling. So, I created a super simple smooth-scrolling effect with no extra dependencies but react.
@@ -45,7 +46,7 @@ This div will hold the full SPA (Single Page Application), resulting in an all-o
 ```
 
 ```css
-.parent{
+.parent {
   position: fixed;
   top: 0;
   left: 0;
@@ -74,13 +75,13 @@ Don't worry if this doesn't make sense. Hopefully, the code will make it clearer
 # SmoothScroll.js
 
 Create a file in **`src/components/SmoothScroll/SmoothScroll.js`** and paste the code below.
-Don't worry about the imports just yet. We'll be creating them shortly. 
+Don't worry about the imports just yet. We'll be creating them shortly.
 
 ```jsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-import "./SmoothScroll.css";
-import useWindowSize from "../../hooks/useWindowSize";
+import './SmoothScroll.css';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const SmoothScroll = ({ children }) => {
   // 1.
@@ -125,7 +126,7 @@ const SmoothScroll = ({ children }) => {
   };
 
   return (
-    <div className="parent">
+    <div className='parent'>
       <div ref={scrollingContainerRef}>{children}</div>
     </div>
   );
@@ -138,12 +139,12 @@ Let's break it down.
 
 1. useWindowSize() is a custom hook that returns the current innerWidth and innerHeight of the window.
 2. scrollingContainerRef is used to apply translateY property on the div, on the fly.
-3. `data` is not a state because we don't want our react component re-rendering each time we scroll. 
+3. `data` is not a state because we don't want our react component re-rendering each time we scroll.
 4. This useEffect runs only if the `windowSize` changes (if the user resizes the browser). `setBodyHeight` makes the height property on <body> equal to the height of the "`scrollingContainerRef` div". After passing "position: fixed" to the "parent div", this makes sure that we have enough room to scroll through the whole "`scrollingContainerRef` div"
 5. This useEffect runs only once and calls the `smoothScrolling` function.
-The `smoothScrolling` function runs recursively changing the translate property on the "`scrollingContainerRef` div" whenever the user scroll.
+   The `smoothScrolling` function runs recursively changing the translate property on the "`scrollingContainerRef` div" whenever the user scroll.
 
-Notice that we are calling the `smoothScrolling` function through `requestAnimationFrame()` function. 
+Notice that we are calling the `smoothScrolling` function through `requestAnimationFrame()` function.
 
 > The `window.requestAnimationFrame(**)**` method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
 
@@ -170,7 +171,7 @@ Create a file in **`src/components/SmoothScroll/SmoothScroll.css`** and paste th
 Create a file in **src/hooks/useWindowSize.js** and paste the code below
 
 ```jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export default function useWindowSize() {
   const getSize = () => {
@@ -187,8 +188,8 @@ export default function useWindowSize() {
       setWindowSize(getSize());
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return windowSize;
@@ -202,19 +203,19 @@ This is a pretty straightforward hook that listens to the event of window `resiz
 Create a file `src/components/Section/Section.js` and paste the code below.
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import "./section.css";
+import './section.css';
 
 const section = ({ flexDirection }) => {
   return (
-    <div className="section" style={{ flexDirection: flexDirection }}>
-      <div className="left-container">
-        <div className="block"></div>
+    <div className='section' style={{ flexDirection: flexDirection }}>
+      <div className='left-container'>
+        <div className='block'></div>
       </div>
 
-      <div className="right-container">
-        <div className="container">
+      <div className='right-container'>
+        <div className='container'>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. In
             laudantium esse fugiat illum tempore sapiente soluta labore voluptas
@@ -267,22 +268,22 @@ Just a react component to fill up some space in our scrolling Container
 # App.js
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import "./App.css";
-import Section from "./components/Section/Section";
-import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
+import './App.css';
+import Section from './components/Section/Section';
+import SmoothScroll from './components/SmoothScroll/SmoothScroll';
 
 function App() {
   return (
     <SmoothScroll>
       <h2>Smooth Scrolling</h2>
-      <Section flexDirection="row" />
-      <Section flexDirection="row-reverse" />
-      <Section flexDirection="row" />
-      <Section flexDirection="row-reverse" />
-      <Section flexDirection="row" />
-      <Section flexDirection="row-reverse" />
+      <Section flexDirection='row' />
+      <Section flexDirection='row-reverse' />
+      <Section flexDirection='row' />
+      <Section flexDirection='row-reverse' />
+      <Section flexDirection='row' />
+      <Section flexDirection='row-reverse' />
     </SmoothScroll>
   );
 }

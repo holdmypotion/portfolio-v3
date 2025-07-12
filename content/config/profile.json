@@ -1,7 +1,7 @@
 {
   "name": "rahul sharma",
   "title": "software engineer",
-  "description": "with a passion for building scalable, AI-driven solutions and optimizing cloud infrastructure. With a strong foundation in both software development and DevOps practices",
+  "description": "who loves designing systems and building reliable infrastructure. I do most of my work in Neovim and enjoy keeping things minimal and efficient unless I feel like vibe coding on cursor (which is apparently, a lot these  days :p). When I'm not coding, you'll probably find me running, doing primal workouts, spending time with my girlfriend or immersed in a fantasy novel or classic literature.",
   "experience": [
     {
       "company": "Scaler/Interviewbit",
@@ -10,10 +10,10 @@
       "highlights": [
         "Architected DaddyQuest: Multi-tenant Orchestration Platform for automated call/meeting analysis with 1 lakh+ monthly calls processing",
         "Engineered Mimir: CRM x Redshift ETL Pipeline, saving $440 monthly through custom in-house solution replacing Hevo",
-        "Led AWS account migration of 22 accounts saving 14% per year in cost and achieved ISO 27001, GDPR, and SOC 2 certifications",
+        "Led security enhancement initiative by migrating production RDS from unencrypted to encrypted data at rest, significantly improving data protection and security posture.",
         "Developed Sail Extension AI-powered tool for real-time call transcription, improving conversion rates by 10%",
         "Implemented Lead Ranking System with ML, boosting conversion by 2% and adding 70 lakhs in extra revenue",
-        "Configured Auto Scaling Groups with 100% spot instances, reducing cost by 80% while maintaining reliability"
+        "Designed and implemented Sail Quest API Microservice in Python using gRPC protocol, and a ROR gem to go with it as a client, transforming legacy S3-based architecture into a scalable, distributed system."
       ]
     },
     {
@@ -29,9 +29,25 @@
   ],
   "skills": {
     "languages": ["Python", "Ruby", "TypeScript", "C++", "Go", "SQL"],
-    "frameworks": ["FastAPI", "ROR", "Celery", "Next.js", "Sidekiq"],
-    "databases": ["MySQL", "MongoDB", "Redis", "Elasticsearch"],
-    "tools": ["AWS", "Docker", "Terraform", "gRPC", "Kafka", "LangChain"]
+    "frameworks": [
+      "FastAPI",
+      "ROR",
+      "Celery",
+      "Next.js",
+      "Sidekiq",
+      "LangChain",
+      "LangGraph"
+    ],
+    "databases": [
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "Elasticsearch",
+      "Redshift",
+      "Postgres",
+      "DynamoDB"
+    ],
+    "tools": ["AWS", "Docker", "Terraform", "gRPC", "Kafka"]
   },
   "contact": {
     "email": "holdmypotion@gmail.com",

@@ -9,6 +9,7 @@ BTW, the source code for the blog is public and you can surely go check it here.
 
 In this blog we''ll be using Context API to make the setup work. So, go ahead if you have a basic understanding of it and if not, you can definitely go have a look at my article on Using React Context API Like a Pro'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/3vZDNzK6CWNeqrGLhqurO8/9d632299763e21e7420129e4a8938c5c/FI.png'
+publish_status: 'published'
 ---
 
 I recently fabricated this 'Tag-Text-Search' functionality for my [blog](https://www.rahsand.tech). So, here is a little article just about it.
@@ -216,9 +217,9 @@ Paste this code in `src/index.css`
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -263,7 +264,7 @@ const SearchBar = () => {
         className={styles.sb__input}
         placeholder='Search'
         type='text'
-        onChange={e => searchHandler(e.target.value)}
+        onChange={(e) => searchHandler(e.target.value)}
         value={query}
       />
       <span>
@@ -292,10 +293,10 @@ export const SearchContext = createContext({
   searchHandler: () => {},
 });
 
-const SearchContextProvider = props => {
+const SearchContextProvider = (props) => {
   const [query, setQuery] = useState('');
 
-  const searchHandler = query => {
+  const searchHandler = (query) => {
     setQuery(query.toLowerCase());
   };
 
@@ -323,11 +324,7 @@ Here, paste the code below in `src/store/index.js`
 import SearchContextProvider from './search-context';
 
 export default function Context({ children }) {
-  return (
-    <SearchContextProvider>
-      {children}
-    </SearchContextProvider>
-  );
+  return <SearchContextProvider>{children}</SearchContextProvider>;
 }
 ```
 
@@ -391,29 +388,29 @@ import { TAGS } from '../../data/data';
 import styles from '../../styles/sideBar.module.css';
 
 export default function TagSection() {
-	// 1.
+  // 1.
   const [unselectedTags, setUnselectedTags] = useState(TAGS);
   const [selectedTags, setSelectedTags] = useState([]);
 
-	// 2.
-  const selectTagHandler = tag => {
+  // 2.
+  const selectTagHandler = (tag) => {
     const updatedSelectedTags = selectedTags.concat(tag);
     setSelectedTags(updatedSelectedTags);
     setUnselectedTags(
-      unselectedTags.filter(unselectedTag => unselectedTag !== tag)
+      unselectedTags.filter((unselectedTag) => unselectedTag !== tag),
     );
   };
 
-// 3.
-  const unselectTagHandler = tag => {
+  // 3.
+  const unselectTagHandler = (tag) => {
     setUnselectedTags(unselectedTags.concat(tag));
     const updatedSelectedTags = selectedTags.filter(
-      selectedTag => selectedTag !== tag
+      (selectedTag) => selectedTag !== tag,
     );
     setSelectedTags(updatedSelectedTags);
   };
 
-  const selectedTagsList = selectedTags.map(tag => (
+  const selectedTagsList = selectedTags.map((tag) => (
     <button
       className={styles.ts__selectedTag}
       key={tag}
@@ -423,7 +420,7 @@ export default function TagSection() {
     </button>
   ));
 
-  const unselectedTagsList = unselectedTags.map(tag => (
+  const unselectedTagsList = unselectedTags.map((tag) => (
     <button
       key={tag}
       className={styles.ts__unselectedTag}
@@ -472,10 +469,10 @@ export const FilterContext = createContext({
   tagSelector: () => {},
 });
 
-const FilterContextProvider = props => {
+const FilterContextProvider = (props) => {
   const [tags, setTags] = useState([]);
 
-  const tagSelector = tagsList => {
+  const tagSelector = (tagsList) => {
     setTags(tagsList);
   };
 
@@ -519,33 +516,33 @@ import { FilterContext } from '../../store/filter-context';
 import styles from '../../styles/sideBar.module.css';
 
 export default function TagSection() {
-	// 1.
+  // 1.
   const filterContext = useContext(FilterContext);
 
   const [unselectedTags, setUnselectedTags] = useState(TAGS);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const selectTagHandler = tag => {
+  const selectTagHandler = (tag) => {
     const updatedSelectedTags = selectedTags.concat(tag);
     setSelectedTags(updatedSelectedTags);
     setUnselectedTags(
-      unselectedTags.filter(unselectedTag => unselectedTag !== tag)
+      unselectedTags.filter((unselectedTag) => unselectedTag !== tag),
     );
-		// 2.
+    // 2.
     filterContext.tagSelector(updatedSelectedTags);
   };
 
-  const unselectTagHandler = tag => {
+  const unselectTagHandler = (tag) => {
     setUnselectedTags(unselectedTags.concat(tag));
     const updatedSelectedTags = selectedTags.filter(
-      selectedTag => selectedTag !== tag
+      (selectedTag) => selectedTag !== tag,
     );
     setSelectedTags(updatedSelectedTags);
     // 3.
     filterContext.tagSelector(updatedSelectedTags);
   };
 
-  const selectedTagsList = selectedTags.map(tag => (
+  const selectedTagsList = selectedTags.map((tag) => (
     <button
       className={styles.ts__selectedTag}
       key={tag}
@@ -555,7 +552,7 @@ export default function TagSection() {
     </button>
   ));
 
-  const unselectedTagsList = unselectedTags.map(tag => (
+  const unselectedTagsList = unselectedTags.map((tag) => (
     <button
       key={tag}
       className={styles.ts__unselectedTag}
@@ -668,11 +665,11 @@ export default function MainContent({ articles }) {
   let filteredArticles = null;
   if (articles) {
     // 1. Tag Search
-    filteredArticles = articles.filter(article => {
+    filteredArticles = articles.filter((article) => {
       if (tags.length === 0) {
         return article;
       }
-      if (tags.some(val => article.tags.includes(val))) {
+      if (tags.some((val) => article.tags.includes(val))) {
         return article;
       } else {
         return null;
@@ -680,7 +677,7 @@ export default function MainContent({ articles }) {
     });
 
     // 2. Text Search
-    filteredArticles = filteredArticles.filter(article => {
+    filteredArticles = filteredArticles.filter((article) => {
       if (article.title.toLowerCase().includes(searchContext.query)) {
         return article;
       } else {
@@ -692,7 +689,7 @@ export default function MainContent({ articles }) {
   return (
     <div className={styles.container}>
       {filteredArticles !== null &&
-        filteredArticles.map(article => {
+        filteredArticles.map((article) => {
           return (
             <div className={styles.thumbnailContainer} key={article.id}>
               <h2>{article.title}</h2>

@@ -4,13 +4,13 @@ export default function ProjectCard({ project }) {
   const getStatusColor = (status) => {
     switch (status) {
       case 'production':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-500/20 text-green-400 border border-green-500/30';
       case 'active':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
       case 'archived':
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-orange-500/20 text-orange-400 border border-orange-500/30';
       default:
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-gray-500/20 text-gray-400 border border-gray-500/30';
     }
   };
 
@@ -22,11 +22,15 @@ export default function ProjectCard({ project }) {
             {project.name}
           </h3>
         </Link>
-        <span className={`text-xs px-2 py-1 ${getStatusColor(project.status)}`}>
+        <span
+          className={`text-xs px-2 py-1 rounded-md ${getStatusColor(
+            project.status,
+          )}`}
+        >
           {project.status}
         </span>
       </div>
-      <p className='text-sm text-gray-700 mb-2'>{project.description}</p>
+      <p className='text-sm text-gray-300 mb-2'>{project.description}</p>
       <div className='text-xs text-gray-600 mb-3'>
         <strong>Tech:</strong> {project.tech}
       </div>

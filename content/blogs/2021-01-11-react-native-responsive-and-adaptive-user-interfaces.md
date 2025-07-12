@@ -10,6 +10,7 @@ Always set the min and max width, it helps to cover devices with XS or XL Screen
 Use Dimension API provided by react native if you want to set the width or height based on the available pixels on the device screen. This differs from using percentage as percentage would be respective to the parent View, and this is wrt the screen itself.
 Use KeyboardAvoidingView to offset the input when you open up a keyboard any platform'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/6MlMTOmglcQNYfYfZzDA69/44f2fc22a444cfdbcef1d36a91d8922b/carbon.png'
+publish_status: 'published'
 ---
 
 Adaptability is probably the most essential need of an app. I will try to layout some of the tools and tips that I use while trying to make an app responsive towards different OS, orientations, available width and height, etc.
@@ -35,9 +36,9 @@ let navStyles = styles.nav;
 
 // Just like "@media screen and (max-width: 350px)"
 if (Dimensions.get('window').width < 350) {
-	containerStyles = styles.containerSmall;
-	buttonStyles = styles.buttonSmall;
-	navStyles = styles.navSmall;
+  containerStyles = styles.containerSmall;
+  buttonStyles = styles.buttonSmall;
+  navStyles = styles.navSmall;
 }
 ```
 
@@ -63,7 +64,7 @@ Dimensions are calculated when the app first renders. So if you change the orien
 
 In such cases, useEffect hook provided by react, comes to the rescue.
 
-Steps: 
+Steps:
 
 - Inside the useEffect hook, create a function that sets the particular style using Dimensions API
 - Add an event listener to the Dimensions object for "change" event, and pass the earlier defined function as the second argument.
@@ -128,8 +129,8 @@ Here Platform.select() returns the most suitable value for the platform you are 
 That is if you are using an IOS device, the "ios" key will take preference!!
 
 ```jsx
-import React from "react";
-import { View, StyleSheet, Text, Platform } from "react-native";
+import React from 'react';
+import { View, StyleSheet, Text, Platform } from 'react-native';
 
 const Header = (props) => {
   return (
@@ -149,20 +150,20 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    width: "100%",
+    width: '100%',
     height: 90,
     paddingTop: 36,
-    backgroundColor: "#CCA7B1",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#CCA7B1',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   headerIos: {
-    backgroundColor: "white",
-    borderBottomColor: "#ccc",
+    backgroundColor: 'white',
+    borderBottomColor: '#ccc',
     borderBottomWidth: 1,
   },
   headerAndroid: {
-    backgroundColor: "#CCA7B1",
+    backgroundColor: '#CCA7B1',
   },
 });
 
@@ -178,14 +179,14 @@ If you have a whole bunch of platform-specific code, a neat way to carry that ou
 Like so
 
 ```jsx
-MainButton.android.js
-MainButton.ios.js
+MainButton.android.js;
+MainButton.ios.js;
 ```
 
 You can then use the component as shown below, and react native automatically chooses the file based on the platform the app is running on.
 
 ```jsx
-import MainButton from "./components/MainButton"
+import MainButton from './components/MainButton';
 ```
 
 Super cool isn't!!
