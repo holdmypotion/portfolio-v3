@@ -1,0 +1,32 @@
+{
+  "resumes": [
+    {
+      "version": "Jun25",
+      "date": "2025-06-01",
+      "filename": "RahulSharma_Jun25.pdf",
+      "latest": true,
+      "changes": "Latest version with current experience and projects"
+    },
+    {
+      "version": "May25",
+      "date": "2025-05-01",
+      "filename": "RahulSharma_May25.pdf",
+      "latest": false,
+      "changes": "Updated with May 2025 projects and experience"
+    },
+    {
+      "version": "Feb25",
+      "date": "2025-02-01",
+      "filename": "RahulSharma_Feb25.pdf",
+      "latest": false,
+      "changes": "February 2025 update with new skills and experience"
+    },
+    {
+      "version": "Oct24",
+      "date": "2024-10-01",
+      "filename": "RahulSharma_Oct24.pdf",
+      "latest": false,
+      "changes": "October 2024 version with updated portfolio projects"
+    }
+  ]
+}

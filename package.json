@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-v3",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "^14.0.0",
+    "prismjs": "^1.30.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "remark": "^14.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^15.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "postcss": "^8.0.0",
+    "tailwindcss": "^3.0.0"
+  }
+}

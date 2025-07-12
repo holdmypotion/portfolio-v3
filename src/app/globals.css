@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* CSS Variables for theme switching */
+  :root {
+    /* Default dark theme */
+    --bg-color: #101116;
+    --fg-color: #e8e8e8;
+    --overlay-color: #101116;
+    --overlay-opacity: 0.9;
+    
+    /* Dark theme colors */
+    --theme-bg: #101116;
+    --theme-fg: #00d4b1;
+    --theme-dark-bg: #0c0c11;
+    --theme-bright-fg: #00ffd5;
+    --theme-comment: #6766b3;
+    --theme-selection: #311b92;
+    --theme-string: #76c1ff;
+    --theme-number: #fffc58;
+    --theme-keyword: #d57bff;
+    --theme-func: #00b0ff;
+    --theme-operator: #00b0ff;
+    --theme-type: #00FF9C;
+    --theme-variable: #b4baff;
+    --theme-error: #FF5370;
+    --theme-warning: #e5ff00;
+    --theme-info: #00a589;
+    --theme-hint: #cc00ff;
+    --theme-line-nr: #b2d101;
+    --theme-line-nr-active: #d9ff00;
+    --theme-git-add: #00ff40;
+    --theme-git-change: #3700ff;
+    --theme-git-delete: #6200ff;
+    --theme-border: #00d4b1;
+    --theme-visual: #311b92;
+    --theme-cursor-line: #1f1d4d;
+    --theme-special: #ff5680;
+    --theme-soft-white: #e8e8e8;
+  }
+  
+  /* Light theme */
+  [data-theme="light"] {
+    --bg-color: #ffffff;
+    --fg-color: #1a1a1a;
+    --overlay-color: #ffffff;
+    --overlay-opacity: 0.95;
+    
+    /* Light theme colors - same families as dark theme, adjusted for light background */
+    --theme-bg: #ffffff;
+    --theme-fg: #008b7a;
+    --theme-dark-bg: #f8f9fa;
+    --theme-bright-fg: #006b5d;
+    --theme-comment: #4c4ba0;
+    --theme-selection: #e0f8f6;
+    --theme-string: #0066cc;
+    --theme-number: #cc9900;
+    --theme-keyword: #9944cc;
+    --theme-func: #0080cc;
+    --theme-operator: #0080cc;
+    --theme-type: #00b366;
+    --theme-variable: #6655cc;
+    --theme-error: #cc1100;
+    --theme-warning: #cc8800;
+    --theme-info: #006677;
+    --theme-hint: #8800cc;
+    --theme-line-nr: #7788aa;
+    --theme-line-nr-active: #998800;
+    --theme-git-add: #00aa22;
+    --theme-git-change: #2200cc;
+    --theme-git-delete: #4400cc;
+    --theme-border: #b3d9d4;
+    --theme-visual: #e6f2f0;
+    --theme-cursor-line: #f5faf9;
+    --theme-special: #cc3366;
+    --theme-soft-white: #2a3f3d;
+  }
+
+  html {
+    font-family: ui-monospace, SFMono-Regular, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+  }
+  
+  /* Wallpaper only for dark theme */
+  :root:not([data-theme="light"]) body {
+    background-image: url('/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    opacity: var(--overlay-opacity);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none;
+  }
+  
+  /* Headings */
+  .prose h1 {
+    @apply text-2xl font-medium mb-6 mt-8 text-custom-bright-fg;
+  }
+  
+  .prose h2 {
+    @apply text-xl font-medium mb-4 mt-6 text-custom-bright-fg;
+  }
+  
+  .prose h3 {
+    @apply text-lg font-medium mb-3 mt-5 text-custom-fg;
+  }
+  
+  .prose h4 {
+    @apply text-base font-medium mb-2 mt-4 text-custom-fg;
+  }
+  
+  .prose h5 {
+    @apply text-sm font-medium mb-2 mt-3 text-custom-fg;
+  }
+  
+  .prose h6 {
+    @apply text-xs font-medium mb-1 mt-2 text-custom-fg;
+  }
+  
+  /* Paragraphs */
+  .prose p {
+    @apply mb-4 leading-relaxed;
+    color: var(--theme-soft-white);
+  }
+  
+  /* Lists */
+  .prose ul {
+    @apply mb-4 ml-6 list-disc;
+  }
+  
+  .prose ol {
+    @apply mb-4 ml-6 list-decimal;
+  }
+  
+  .prose li {
+    @apply mb-2 leading-relaxed;
+    color: var(--theme-soft-white);
+  }
+  
+  .prose li > ul,
+  .prose li > ol {
+    @apply mt-2 mb-1;
+  }
+  
+  /* Nested lists */
+  .prose ul ul {
+    @apply list-disc ml-4;
+  }
+  
+  .prose ol ol {
+    @apply list-decimal ml-4;
+  }
+  
+  .prose ul ol {
+    @apply list-decimal ml-4;
+  }
+  
+  .prose ol ul {
+    @apply list-disc ml-4;
+  }
+  
+  /* Code */
+  .prose code {
+    @apply bg-custom-dark-bg px-2 py-1 text-sm text-custom-string border border-custom-border rounded;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+  }
+
+  .prose pre {
+    @apply bg-custom-dark-bg p-4 overflow-x-auto text-sm mb-4 border border-custom-border rounded;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent border-0 p-0 text-custom-string;
+  }
+
+  /* Prism.js syntax highlighting - theme aware */
+  .prose .token.comment,
+  .prose .token.prolog,
+  .prose .token.doctype,
+  .prose .token.cdata {
+    color: var(--theme-comment);
+    font-style: italic;
+  }
+
+  .prose .token.punctuation {
+    color: var(--theme-fg);
+  }
+
+  .prose .token.property,
+  .prose .token.tag,
+  .prose .token.boolean,
+  .prose .token.number,
+  .prose .token.constant,
+  .prose .token.symbol,
+  .prose .token.deleted {
+    color: var(--theme-number);
+  }
+
+  .prose .token.selector,
+  .prose .token.attr-name,
+  .prose .token.string,
+  .prose .token.char,
+  .prose .token.builtin,
+  .prose .token.inserted {
+    color: var(--theme-string);
+  }
+
+  .prose .token.operator,
+  .prose .token.entity,
+  .prose .token.url,
+  .prose .language-css .token.string,
+  .prose .style .token.string {
+    color: var(--theme-operator);
+  }
+
+  .prose .token.atrule,
+  .prose .token.attr-value,
+  .prose .token.keyword {
+    color: var(--theme-keyword);
+    font-weight: bold;
+  }
+
+  .prose .token.function,
+  .prose .token.class-name {
+    color: var(--theme-type);
+  }
+
+  .prose .token.regex,
+  .prose .token.important,
+  .prose .token.variable {
+    color: var(--theme-special);
+  }
+
+  .prose .token.namespace {
+    opacity: 0.7;
+  }
+
+  .prose .token.bold,
+  .prose .token.important {
+    font-weight: bold;
+  }
+  
+  /* Quotes */
+  .prose blockquote {
+    @apply border-l-4 border-custom-border pl-4 italic my-4 text-custom-comment bg-custom-dark-bg py-2 rounded-r;
+  }
+  
+  /* Links */
+  .prose a {
+    @apply underline hover:no-underline text-custom-func hover:text-custom-bright-fg transition-colors;
+  }
+  
+  /* Tables */
+  .prose table {
+    @apply w-full border-collapse border border-custom-border mb-4;
+  }
+  
+  .prose th {
+    @apply border border-custom-border px-4 py-2 bg-custom-dark-bg text-custom-fg font-medium;
+  }
+  
+  .prose td {
+    @apply border border-custom-border px-4 py-2;
+    color: var(--theme-soft-white);
+  }
+  
+  /* Horizontal rule */
+  .prose hr {
+    @apply border-t border-custom-border my-6;
+  }
+  
+  /* Strong and emphasis */
+  .prose strong {
+    @apply font-semibold text-custom-bright-fg;
+  }
+  
+  .prose em {
+    @apply italic text-custom-fg;
+  }
+  
+  /* Images */
+  .prose img {
+    @apply rounded border border-custom-border my-4;
+  }
+} 
