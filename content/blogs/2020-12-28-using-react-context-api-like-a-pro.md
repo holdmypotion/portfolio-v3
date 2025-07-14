@@ -1,7 +1,7 @@
 ---
 title: 'Using React Context API Like a Pro'
 date: '2020-12-28'
-tags: ['react', 'javacript', 'webdev', 'reactnative', 'tech']
+tags: ['web', 'mobile']
 slug: 'using-react-context-api-like-a-pro'
 description: 'If you''ve been hearing the term "Context API" and feel totally confused about it (like me, some days ago) or you have no clue what this even means, look no further! I''ve got you covered (for the most part, I believe)'
 featuredImage: 'https://images.ctfassets.net/8z3meboy5dgi/5Wvm6I1wA7tLS9R1EAXUd8/e28144333acfa6f62d45fb1c7aca1f6a/headerImage.png'

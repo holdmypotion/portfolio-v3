@@ -1,7 +1,7 @@
 ---
 title: 'React: Custom Cursor (No Extra dependencies!)'
 date: '2021-03-09'
-tags: ['javascript', 'react', 'webdev', 'design', 'tech']
+tags: ['web', 'design']
 slug: 'react-custom-cursor-no-extra-dependencies'
 description: 'Just like the last article, this also focuses on a feature that I would like my portfolio to have. A custom cursor.
 I''ve noticed this treat a lot lately and I think it adds a bit of extra sass to the website.

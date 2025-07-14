@@ -1,7 +1,7 @@
 ---
 title: 'React 3D Image Slider'
 date: '2021-02-15'
-tags: ['react', 'webdev', 'design', 'javascript', 'tech']
+tags: ['web', 'design']
 slug: 'react-3d-image-slider'
 description: 'I had to make an image slider for a project and I found out that there is no ready to use cool, basic, image slider. So I went ahead and made one using react-slick.
 In this article, we will be making that image slider together. Let''s get right into it.

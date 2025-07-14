@@ -1,7 +1,7 @@
 ---
 title: 'React: Tag Text Search'
 date: '2021-07-14'
-tags: ['react', 'javascript', 'webdev', 'tech']
+tags: ['web']
 slug: 'react-tag-text-search'
 description: 'I recently fabricated this ''Tag-Text-Search'' functionality for my blog. So, here is a little article just about it.
 

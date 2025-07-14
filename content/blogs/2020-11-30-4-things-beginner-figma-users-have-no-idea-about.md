@@ -1,7 +1,7 @@
 ---
 title: '4 Things beginner Figma users have no idea about'
 date: '2020-11-30'
-tags: ['webdev', 'design']
+tags: ['design']
 slug: '4-things-beginner-figma-users-have-no-idea-about'
 description: 'Here are some things that I didn''t know when I started with Figma. These tips really boosted my workflow and got me really nice designs in the end.
 

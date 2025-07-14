@@ -1,7 +1,7 @@
 ---
 title: 'Implement Search Bar in React for Ecommerce Website'
 date: '2020-11-21'
-tags: ['javascript', 'react', 'webdev', 'tech']
+tags: ['web']
 slug: 'implement-search-bar-in-react-for-ecommerce-website'
 description: 'I observed that in eCommerce websites filtering products based on certain filters or user inputs is a super common thing.
 

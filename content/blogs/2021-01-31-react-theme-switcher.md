@@ -1,7 +1,7 @@
 ---
 title: 'React Theme Switcher'
 date: '2021-01-31'
-tags: ['react', 'webdev', 'javascript', 'design', 'tech']
+tags: ['web', 'design']
 slug: 'react-theme-switcher'
 description: 'In this article, we''ll be creating a theme switcher using styled-components, context API, and of course, react.
 Thus, you have a react app powered by styled-components.

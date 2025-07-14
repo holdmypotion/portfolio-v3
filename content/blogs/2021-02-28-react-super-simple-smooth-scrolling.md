@@ -1,7 +1,7 @@
 ---
 title: 'React: Super Simple Smooth Scrolling'
 date: '2021-02-28'
-tags: ['react', 'javascript', 'webdev', 'design', 'tech']
+tags: ['web', 'design']
 slug: 'react-super-simple-smooth-scrolling'
 description: 'I have been wanting to redo my portfolio, and one of the major things I wanted it to have was smooth scrolling. So, I created a super simple smooth-scrolling effect with no extra dependencies but react.
 

@@ -1,7 +1,7 @@
 ---
 title: 'React: Marquee using Framer Motion'
 date: '2021-05-02'
-tags: ['react', 'javascript', 'design', 'webdev', 'tech']
+tags: ['web', 'design']
 slug: 'react-marquee-using-framer-motion'
 description: 'This is called a "marquee" and apparently, I needed one for my portfolio website. So, I thought I might as well share it with you all!
 

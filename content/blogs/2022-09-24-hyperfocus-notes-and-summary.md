@@ -1,7 +1,7 @@
 ---
 title: 'Hyperfocus - Notes and Summary'
 date: '2022-09-24'
-tags: ['booknotes', 'self-improvement', 'productivity', 'non-tech']
+tags: ['booknotes', 'personal-development']
 slug: 'hyperfocus-notes-and-summary'
 description: 'Switch off the autopilot, as the most urgent and stimulating things in your environment are rarely the most significant. → Go pursue something worthwhile, not something expedient 
 1. Set your env to be distraction-less

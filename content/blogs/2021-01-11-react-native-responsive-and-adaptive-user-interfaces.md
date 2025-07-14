@@ -1,7 +1,7 @@
 ---
 title: 'React Native: Responsive and Adaptive User Interfaces'
 date: '2021-01-11'
-tags: ['reactnative', 'javascript', 'mobiledev', 'tech']
+tags: ['mobile']
 slug: 'react-native-responsive-and-adaptive-user-interfaces'
 description: 'Adaptability is probably the most essential need of an app. I will try to layout some of the tools and tips that I use while trying to make an app responsive towards different OS, orientations, available width and height, etc.
 

@@ -1,7 +1,7 @@
 ---
 title: 'React Hooks Demystified'
 date: '2020-12-07'
-tags: ['react', 'webdev', 'javascript', 'tech']
+tags: ['web']
 slug: 'react-hooks-demystified'
 description: 'In React, sharing functionalities across components without data coupling (sharing of unnecessary data or state across components) is done using hooks.
 

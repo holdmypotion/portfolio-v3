@@ -1,7 +1,7 @@
 ---
 title: 'React: Scroll Transition for Fancy Portfolios'
 date: '2021-09-13'
-tags: ['react', 'javascript', 'webdev', 'design', 'tech']
+tags: ['web', 'design']
 slug: 'react-scroll-transition-for-fancy-portfolios'
 description: 'I saw this fancy scrolling effect on this website and it just blew my mind. I thought of recreating it and got somewhat successful :)
 

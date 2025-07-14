@@ -1,7 +1,7 @@
 ---
 title: 'Anything You Want - Notes and Summary'
 date: '2022-10-09'
-tags: ['booknotes', 'non-tech', 'business']
+tags: ['booknotes', 'business']
 slug: 'anything-you-want-notes-and-summary'
 description: '- There’s a benefit to being naive about the norms of the world—deciding from scratch what seems like the right thing to do, instead of just doing what others do.
 - There’s a big difference between being self-employed and being a business owner. Being self-employed feels like freedom until you realize that if you take time off, your business crumbles. To be a true business owner, make it so that you could leave for a year, and when you came back, your business would be doing better than when you left.
