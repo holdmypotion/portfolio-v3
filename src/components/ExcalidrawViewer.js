@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import '@excalidraw/excalidraw/index.css';
+import { useTheme } from './ThemeContext';
 
 const ExcalidrawWrapper = ({ initialData, isFullscreen = false }) => {
   const [Excalidraw, setExcalidraw] = useState(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     import('@excalidraw/excalidraw').then((module) => {
@@ -34,7 +36,7 @@ const ExcalidrawWrapper = ({ initialData, isFullscreen = false }) => {
         initialData={initialData}
         viewModeEnabled={true}
         zenModeEnabled={false}
-        theme='light'
+        theme={theme}
         UIOptions={{
           canvasActions: {
             saveToActiveFile: false,
@@ -60,6 +62,8 @@ const DynamicExcalidrawWrapper = dynamic(
 );
 
 const DiagramModal = ({ isOpen, onClose, diagramData, title }) => {
+  const { theme } = useTheme();
+
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
@@ -87,7 +91,11 @@ const DiagramModal = ({ isOpen, onClose, diagramData, title }) => {
         onClick={onClose}
       />
 
-      <div className='relative w-[95vw] h-[90vh] max-w-7xl bg-white rounded-lg shadow-2xl overflow-hidden'>
+      <div
+        className={`relative w-[95vw] h-[90vh] max-w-7xl ${
+          theme === 'dark' ? 'bg-custom-dark-bg' : 'bg-white'
+        } rounded-lg shadow-2xl overflow-hidden`}
+      >
         <div className='flex items-center justify-between p-4 border-b border-gray-200 bg-custom-dark-bg'>
           <h2 className='text-lg font-medium text-custom-bright-fg truncate'>
             {title}
@@ -113,7 +121,11 @@ const DiagramModal = ({ isOpen, onClose, diagramData, title }) => {
           </button>
         </div>
 
-        <div className='w-full h-full bg-white'>
+        <div
+          className={`w-full h-full ${
+            theme === 'dark' ? 'bg-custom-dark-bg' : 'bg-white'
+          }`}
+        >
           <DynamicExcalidrawWrapper
             initialData={diagramData}
             isFullscreen={true}
@@ -130,6 +142,7 @@ export default function ExcalidrawViewer({ compressedData, title }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const loadAndProcessData = async () => {
@@ -169,11 +182,9 @@ export default function ExcalidrawViewer({ compressedData, title }) {
         const elements = parsedData.elements || [];
 
         const appState = {
-          theme: 'dark',
           viewModeEnabled: true,
           zenModeEnabled: false,
           gridSize: null,
-          viewBackgroundColor: '#ffffff',
           scrollX: 0,
           scrollY: 0,
           zoom: {
@@ -200,7 +211,7 @@ export default function ExcalidrawViewer({ compressedData, title }) {
     };
 
     loadAndProcessData();
-  }, [compressedData]);
+  }, [compressedData, theme]);
 
   if (isLoading) {
     return (
@@ -250,15 +261,23 @@ export default function ExcalidrawViewer({ compressedData, title }) {
 
   return (
     <>
-      <div className='relative w-full h-[500px] border border-custom-border rounded overflow-hidden bg-white group'>
+      <div
+        className={`relative w-full h-[500px] border border-custom-border rounded overflow-hidden ${
+          theme === 'dark' ? 'bg-custom-dark-bg' : 'bg-white'
+        } group`}
+      >
         <button
           onClick={() => setIsModalOpen(true)}
-          className='absolute top-4 right-4 z-10 p-2 bg-white bg-opacity-90 hover:bg-opacity-100 border border-gray-300 rounded-lg shadow-sm transition-all duration-200 opacity-0 group-hover:opacity-100'
+          className={`absolute top-4 right-4 z-10 p-2 ${
+            theme === 'dark'
+              ? 'bg-custom-dark-bg bg-opacity-90 hover:bg-opacity-100 border border-custom-border text-custom-fg'
+              : 'bg-white bg-opacity-90 hover:bg-opacity-100 border border-gray-300 text-gray-600'
+          } rounded-lg shadow-sm transition-all duration-200 opacity-0 group-hover:opacity-100`}
           aria-label='Open diagram in fullscreen'
           title='Open in fullscreen'
         >
           <svg
-            className='w-5 h-5 text-gray-600'
+            className='w-5 h-5'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
