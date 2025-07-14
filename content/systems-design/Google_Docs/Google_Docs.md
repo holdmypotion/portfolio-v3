@@ -1,8 +1,9 @@
 ---
-title: 'Google Docs System Design'
-date: '2024-01-08'
+title: 'Google Docs HLD'
+date: '2025-07-13'
 description: 'Collaborative document editing system design with real-time synchronization, operational transforms, and multi-user conflict resolution.'
 tags: ['real-time', 'product-style']
+slug: 'google-docs'
 status: 'active'
 publish_status: 'published'
 ---

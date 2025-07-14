@@ -30,12 +30,12 @@ export function getAllSystemsDesignSlugs() {
   }
 }
 
-export function getSystemsDesignBySlug(slug) {
+function getSystemsDesignContentByDirName(dirName) {
   try {
-    const dirPath = path.join(systemsDesignDirectory, slug);
+    const dirPath = path.join(systemsDesignDirectory, dirName);
 
     if (!fs.existsSync(dirPath) || !fs.statSync(dirPath).isDirectory()) {
-      throw new Error(`Directory not found: ${slug}`);
+      throw new Error(`Directory not found: ${dirName}`);
     }
 
     const files = fs.readdirSync(dirPath);
@@ -86,10 +86,11 @@ export function getSystemsDesignBySlug(slug) {
 
     const title =
       frontmatter.title ||
-      slug.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+      dirName.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 
     return {
-      slug,
+      slug: frontmatter.slug || dirName,
+      dirName,
       title,
       date: frontmatter.date || new Date().toISOString().split('T')[0],
       description: frontmatter.description || `System design diagram: ${title}`,
@@ -100,15 +101,40 @@ export function getSystemsDesignBySlug(slug) {
       type: content.trim() ? 'markdown' : 'excalidraw',
     };
   } catch (error) {
-    console.error(`Error reading systems design file ${slug}:`, error);
+    console.error(`Error reading systems design file ${dirName}:`, error);
     return null;
   }
 }
 
+export function getSystemsDesignBySlug(slug) {
+  // First, try to find by frontmatter slug
+  const allDirNames = getAllSystemsDesignSlugs();
+  let targetDirName = null;
+
+  for (const dirName of allDirNames) {
+    const systemsDesign = getSystemsDesignContentByDirName(dirName);
+    if (systemsDesign && systemsDesign.slug === slug) {
+      targetDirName = dirName;
+      break;
+    }
+  }
+
+  // If not found by frontmatter slug, try to find by directory name
+  if (!targetDirName && allDirNames.includes(slug)) {
+    targetDirName = slug;
+  }
+
+  if (!targetDirName) {
+    return null;
+  }
+
+  return getSystemsDesignContentByDirName(targetDirName);
+}
+
 export function getAllSystemsDesign() {
-  const slugs = getAllSystemsDesignSlugs();
-  const systemsDesign = slugs
-    .map((slug) => getSystemsDesignBySlug(slug))
+  const dirNames = getAllSystemsDesignSlugs();
+  const systemsDesign = dirNames
+    .map((dirName) => getSystemsDesignContentByDirName(dirName))
     .filter(Boolean)
     .filter((diagram) => diagram.frontmatter.publish_status !== 'draft')
     .sort((a, b) => (a.date < b.date ? 1 : -1));

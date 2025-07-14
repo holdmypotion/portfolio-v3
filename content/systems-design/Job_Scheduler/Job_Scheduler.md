@@ -1,8 +1,9 @@
 ---
-title: 'Job Scheduler System Design'
-date: '2024-01-10'
+title: 'Job Scheduler HLD'
+date: '2025-07-15'
 description: 'Distributed job scheduler system design for executing background tasks, cron jobs, and workflow management at enterprise scale.'
 tags: ['infra-style', 'distributed-systems']
+slug: 'job-scheduler'
 publish_status: 'published'
 ---
 

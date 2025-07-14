@@ -1,8 +1,9 @@
 ---
-title: 'URL Shortener System Design'
-date: '2024-01-15'
+title: 'URL Shortener HLD'
+date: '2025-06-14'
 description: 'System design for a scalable URL shortening service like bit.ly or tinyurl, handling millions of requests with efficient encoding and caching strategies.'
 tags: ['product-style', 'read-heavy']
+slug: 'url-shortener'
 publish_status: 'published'
 ---
 

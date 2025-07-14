@@ -1,8 +1,9 @@
 ---
-title: 'YouTube System Design'
-date: '2024-01-20'
+title: 'YouTube HLD'
+date: '2025-07-14'
 description: 'Comprehensive system design for a video streaming platform like YouTube, handling massive scale video uploads, processing, storage, and global content delivery.'
 tags: ['product-style', 'read-heavy', 'distributed-systems']
+slug: 'youtube'
 publish_status: 'published'
 ---
 

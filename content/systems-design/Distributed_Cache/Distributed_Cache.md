@@ -1,8 +1,9 @@
 ---
-title: 'Distributed Cache System Design'
-date: '2024-01-12'
+title: 'Distributed Cache HLD'
+date: '2025-07-12'
 description: 'Design of a distributed caching system for high-performance applications, featuring consistent hashing, replication, and fault tolerance mechanisms.'
 tags: ['infra-style']
+slug: 'distributed-cache'
 publish_status: 'published'
 ---
 

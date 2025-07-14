@@ -1,8 +1,9 @@
 ---
-title: 'Feature Flag System Design'
-date: '2024-01-05'
+title: 'Feature Flag HLD + LLD'
+date: '2025-05-14'
 description: 'Feature flagging system for safe deployment, A/B testing, and gradual rollouts with real-time configuration management.'
 tags: ['product-style', 'read-heavy']
+slug: 'feature-flag'
 publish_status: 'published'
 ---
 

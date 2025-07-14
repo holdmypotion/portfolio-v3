@@ -1,8 +1,9 @@
 ---
-title: 'Ticketing System Design'
-date: '2024-01-18'
+title: 'Ticketing HLD'
+date: '2025-07-11'
 description: 'System design for a high-volume event ticketing platform handling concurrent purchases, seat reservations, and payment processing at scale.'
 tags: ['product-style', 'distributed-systems', 'payments']
+slug: 'ticketing-system'
 publish_status: 'published'
 ---
 
