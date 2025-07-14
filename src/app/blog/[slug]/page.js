@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getBlogBySlug, getAllBlogs } from '@/lib/blogs';
 import { notFound } from 'next/navigation';
+import BlogImage from '@/components/BlogImage';
 import CodeHighlighter from '@/components/CodeHighlighter';
 import Contact from '@/components/Contact';
 
@@ -140,6 +141,18 @@ export default async function BlogPostPage({ params }) {
               <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
             </div>
           </header>
+
+          {/* Featured Image */}
+          {blog.featuredImage && (
+            <div className='mb-8'>
+              <BlogImage
+                src={blog.featuredImage}
+                alt={`Featured image for ${blog.title}`}
+                width={1200}
+                height={630}
+              />
+            </div>
+          )}
 
           <CodeHighlighter>
             <div

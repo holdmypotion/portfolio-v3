@@ -119,6 +119,27 @@ export default function RootLayout({ children }) {
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('portfolio-theme');
+                  if (theme && (theme === 'light' || theme === 'dark')) {
+                    document.documentElement.setAttribute('data-theme', theme);
+                  } else {
+                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    var systemTheme = prefersDark ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', systemTheme);
+                    localStorage.setItem('portfolio-theme', systemTheme);
+                  }
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className='min-h-screen bg-custom-bg text-custom-fg font-mono'>
         <ThemeProvider>

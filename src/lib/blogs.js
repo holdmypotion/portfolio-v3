@@ -7,12 +7,27 @@ import {
 export function getAllBlogs(includeDrafts = false) {
   const slugs = getAllMarkdownFiles('blogs');
   const blogs = slugs.map((slug) => {
-    const { frontmatter } = getMarkdownContent('blogs', slug);
-    return {
-      slug: frontmatter.slug || slug, // Use frontmatter slug if available, fallback to filename
-      filename: slug, // Keep track of the actual filename
-      ...frontmatter,
-    };
+    try {
+      const { frontmatter } = getMarkdownContent('blogs', slug);
+      return {
+        slug: frontmatter.slug || slug,
+        filename: slug,
+        title: frontmatter.title || 'Untitled',
+        date: frontmatter.date || new Date().toISOString(),
+        tags: frontmatter.tags || [],
+        ...frontmatter,
+      };
+    } catch (error) {
+      console.error(`Error parsing blog file: ${slug}`, error);
+      return {
+        slug,
+        filename: slug,
+        title: 'Untitled',
+        date: new Date().toISOString(),
+        tags: [],
+        publish_status: 'draft',
+      };
+    }
   });
 
   // Filter by publish_status unless includeDrafts is true

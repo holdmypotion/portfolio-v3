@@ -51,6 +51,24 @@ const nextConfig = {
 
   // Compress output for better performance
   compress: true,
+
+  // Image optimization configuration
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dev-to-uploads.s3.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

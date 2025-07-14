@@ -113,7 +113,7 @@ Create a new markdown file in `content/blogs/` with the format:
 ---
 title: 'Your Blog Title'
 date: '2024-01-10'
-tags: ['tag1', 'tag2']
+tags: ['booknotes', 'web'] # See available tags below
 slug: 'your-blog-slug'
 description: 'Brief description for SEO and social sharing'
 featuredImage: 'https://example.com/image.jpg' # Optional
@@ -122,6 +122,20 @@ publish_status: 'published' # or 'draft'
 
 Your blog content here...
 ```
+
+**Available Tags (use only these 11 tags):**
+
+1. `booknotes` - Book summaries and notes
+2. `business` - Business, entrepreneurship, freelancing, marketing
+3. `career` - Career development, professional growth
+4. `design` - UI/UX, visual design, Figma
+5. `development` - Programming, coding, technical tutorials
+6. `guide` - How-to guides, tutorials, frameworks
+7. `leadership` - Management, team leadership
+8. `mobile` - React Native, mobile development
+9. `personal-development` - Self-improvement, productivity, psychology
+10. `tools` - DevOps, Docker, development tools
+11. `web` - Web development, JavaScript, React
 
 ### Adding a Project
 
