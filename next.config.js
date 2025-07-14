@@ -2,17 +2,6 @@
 const nextConfig = {
   // App directory is now stable in Next.js 14
 
-  // Enable experimental features for better SEO
-  experimental: {
-    optimizeCss: true,
-  },
-
-  // Optimize images for better performance (when not using static export)
-  // images: {
-  //   formats: ['image/webp', 'image/avif'],
-  //   minimumCacheTTL: 60,
-  // },
-
   // Headers for SEO and security
   async headers() {
     return [
@@ -62,13 +51,6 @@ const nextConfig = {
 
   // Compress output for better performance
   compress: true,
-
-  // Uncomment these for static site generation:
-  // output: 'export',
-  // trailingSlash: true,
-  // images: {
-  //   unoptimized: true,
-  // },
 };
 
 module.exports = nextConfig;
