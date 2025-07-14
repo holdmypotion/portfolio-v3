@@ -8,8 +8,8 @@ export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState('all');
-  const [allTags, setAllTags] = useState(['all']);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [allTags, setAllTags] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function BlogPage() {
     ])
       .then(([blogsData, tagsData]) => {
         setBlogs(blogsData);
-        setAllTags(['all', ...tagsData]);
+        setAllTags(tagsData);
         setLoading(false);
       })
       .catch((error) => {
@@ -38,11 +38,18 @@ export default function BlogPage() {
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
       const matchesTag =
-        selectedTag === 'all' || (blog.tags && blog.tags.includes(selectedTag));
+        selectedTags.length === 0 ||
+        (blog.tags && selectedTags.some((tag) => blog.tags.includes(tag)));
       return matchesSearch && matchesTag;
     });
     setFilteredBlogs(filtered);
-  }, [blogs, searchTerm, selectedTag]);
+  }, [blogs, searchTerm, selectedTags]);
+
+  const toggleTag = (tag) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
 
   if (loading) {
     return (
@@ -70,22 +77,35 @@ export default function BlogPage() {
             aria-label='Search blog posts'
           />
         </div>
-        <select
-          className='p-2 bg-custom-dark-bg border border-custom-border text-sm font-mono text-custom-soft-white focus:outline-none focus:border-custom-fg'
-          value={selectedTag}
-          onChange={(e) => setSelectedTag(e.target.value)}
-          aria-label='Filter by tag'
-        >
-          {allTags.map((tag) => (
-            <option
-              key={tag}
-              value={tag}
-              className='bg-custom-dark-bg text-custom-soft-white'
+        <div className='flex flex-wrap gap-2 items-center'>
+          {allTags.map((tag) => {
+            const isSelected = selectedTags.includes(tag);
+            return (
+              <button
+                key={tag}
+                onClick={() => toggleTag(tag)}
+                className={`px-3 py-1 text-xs font-mono border transition-colors focus:outline-none focus:ring-1 focus:ring-custom-fg ${
+                  isSelected
+                    ? 'bg-custom-fg text-custom-bg border-custom-fg hover:bg-custom-bright-fg'
+                    : 'bg-custom-dark-bg text-custom-soft-white border-custom-border hover:border-custom-fg hover:text-custom-bright-fg'
+                }`}
+                aria-label={`${isSelected ? 'Remove' : 'Add'} ${tag} filter`}
+                aria-pressed={isSelected}
+              >
+                {tag}
+              </button>
+            );
+          })}
+          {selectedTags.length > 0 && (
+            <button
+              onClick={() => setSelectedTags([])}
+              className='px-2 py-1 text-xs text-custom-comment hover:text-custom-fg transition-colors border-l border-custom-border ml-2 pl-3'
+              aria-label='Clear all tag filters'
             >
-              {tag === 'all' ? 'all tags' : tag}
-            </option>
-          ))}
-        </select>
+              clear all
+            </button>
+          )}
+        </div>
       </div>
 
       <div className='space-y-1 pb-8'>
