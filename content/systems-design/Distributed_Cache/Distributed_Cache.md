@@ -2,7 +2,7 @@
 title: 'Distributed Cache System Design'
 date: '2024-01-12'
 description: 'Design of a distributed caching system for high-performance applications, featuring consistent hashing, replication, and fault tolerance mechanisms.'
-tags: ['infrastructure-style']
+tags: ['infra-style']
 publish_status: 'published'
 ---
 

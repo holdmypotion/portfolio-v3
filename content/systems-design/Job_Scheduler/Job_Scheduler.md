@@ -2,7 +2,7 @@
 title: 'Job Scheduler System Design'
 date: '2024-01-10'
 description: 'Distributed job scheduler system design for executing background tasks, cron jobs, and workflow management at enterprise scale.'
-tags: ['infrastructure-style', 'distributed-systems']
+tags: ['infra-style', 'distributed-systems']
 publish_status: 'published'
 ---
 
