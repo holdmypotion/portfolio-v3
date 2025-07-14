@@ -16,14 +16,23 @@ export default function KeyboardNavigation() {
         activeElement.tagName === 'TEXTAREA' ||
         activeElement.contentEditable === 'true';
 
-      // Handle blog search with '/' - this should work even when not in input
-      if (event.key === '/' && pathname.startsWith('/blog')) {
-        event.preventDefault();
-        const searchInput = document.querySelector('#blog-search');
-        if (searchInput) {
-          searchInput.focus();
+      // Handle search with '/' - this should work even when not in input
+      if (event.key === '/') {
+        if (pathname.startsWith('/blog')) {
+          event.preventDefault();
+          const searchInput = document.querySelector('#blog-search');
+          if (searchInput) {
+            searchInput.focus();
+          }
+          return;
+        } else if (pathname.startsWith('/systems-design')) {
+          event.preventDefault();
+          const searchInput = document.querySelector('#systems-design-search');
+          if (searchInput) {
+            searchInput.focus();
+          }
+          return;
         }
-        return;
       }
 
       // Skip other shortcuts if user is typing
@@ -50,6 +59,10 @@ export default function KeyboardNavigation() {
         case 'p':
           event.preventDefault();
           router.push('/projects');
+          break;
+        case 's':
+          event.preventDefault();
+          router.push('/systems-design');
           break;
         case 'escape':
           // Clear focus from any input field

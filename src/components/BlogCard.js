@@ -10,7 +10,14 @@ export default function BlogCard({ blog }) {
               {blog.title}
             </h3>
           </Link>
-          <div className='flex items-center space-x-2 mt-1'>
+
+          {blog.description && (
+            <p className='text-xs text-custom-description mt-2 line-clamp-2'>
+              {blog.description}
+            </p>
+          )}
+
+          <div className='flex items-center space-x-2 mt-2'>
             <span className='text-xs text-custom-comment'>{blog.date}</span>
             <span className='text-xs text-custom-comment'>•</span>
             <span className='text-xs text-custom-comment'>

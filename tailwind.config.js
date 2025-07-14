@@ -26,6 +26,7 @@ module.exports = {
           'dark-bg': 'var(--theme-dark-bg, #0c0c11)',
           'bright-fg': 'var(--theme-bright-fg, #00ffd5)',
           comment: 'var(--theme-comment, #6766b3)',
+          description: 'var(--theme-description, #9998d4)',
           selection: 'var(--theme-selection, #311b92)',
           string: 'var(--theme-string, #76c1ff)',
           number: 'var(--theme-number, #fffc58)',

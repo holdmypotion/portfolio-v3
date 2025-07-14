@@ -17,6 +17,7 @@
     --theme-dark-bg: #0c0c11;
     --theme-bright-fg: #00ffd5;
     --theme-comment: #6766b3;
+    --theme-description: #9998d4;
     --theme-selection: #311b92;
     --theme-string: #76c1ff;
     --theme-number: #fffc58;
@@ -54,6 +55,7 @@
     --theme-dark-bg: #f8f9fa;
     --theme-bright-fg: #006b5d;
     --theme-comment: #4c4ba0;
+    --theme-description: #6967b8;
     --theme-selection: #e0f8f6;
     --theme-string: #0066cc;
     --theme-number: #cc9900;

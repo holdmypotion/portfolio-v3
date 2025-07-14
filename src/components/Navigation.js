@@ -80,6 +80,16 @@ export default function Navigation() {
           >
             projects <span className='text-custom-comment'>(p)</span>
           </Link>
+          <Link
+            href='/systems-design'
+            className={`text-sm ${
+              isActive('/systems-design')
+                ? 'text-custom-bright-fg'
+                : 'text-custom-soft-white hover:text-custom-fg'
+            }`}
+          >
+            systems design <span className='text-custom-comment'>(s)</span>
+          </Link>
         </nav>
       </div>
     </header>
