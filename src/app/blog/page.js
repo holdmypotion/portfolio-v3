@@ -44,7 +44,7 @@ export default function BlogPage() {
   if (loading) {
     return (
       <div className='py-8'>
-        <h2 className='text-2xl mb-6 text-custom-bright-fg'>blog</h2>
+        <h1 className='text-2xl mb-6 text-custom-bright-fg'>blog</h1>
         <p className='text-custom-comment text-sm'>Loading blog posts...</p>
       </div>
     );
@@ -52,7 +52,7 @@ export default function BlogPage() {
 
   return (
     <div className='py-8'>
-      <h2 className='text-2xl mb-6 text-custom-bright-fg'>blog</h2>
+      <h1 className='text-2xl mb-6 text-custom-bright-fg'>blog</h1>
 
       {/* Search and Filter */}
       <div className='mb-6 space-y-2'>
@@ -64,12 +64,14 @@ export default function BlogPage() {
             className='w-full p-2 bg-custom-dark-bg border border-custom-border text-sm font-mono text-custom-soft-white placeholder-custom-comment focus:outline-none focus:border-custom-fg'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            aria-label='Search blog posts'
           />
         </div>
         <select
           className='p-2 bg-custom-dark-bg border border-custom-border text-sm font-mono text-custom-soft-white focus:outline-none focus:border-custom-fg'
           value={selectedTag}
           onChange={(e) => setSelectedTag(e.target.value)}
+          aria-label='Filter by tag'
         >
           {allTags.map((tag) => (
             <option

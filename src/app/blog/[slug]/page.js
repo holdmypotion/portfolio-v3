@@ -1,8 +1,76 @@
 import Link from 'next/link';
-import { getBlogBySlug } from '@/lib/blogs';
+import { getBlogBySlug, getAllBlogs } from '@/lib/blogs';
 import { notFound } from 'next/navigation';
 import CodeHighlighter from '@/components/CodeHighlighter';
 import Contact from '@/components/Contact';
+
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+
+  try {
+    const blogData = await getBlogBySlug(slug);
+    const blog = blogData.frontmatter;
+
+    return {
+      title: blog.title,
+      description:
+        blog.description ||
+        `Read about ${blog.title} - ${
+          blog.tags?.join(', ') || 'Technical article'
+        } by Rahul Sharma`,
+      keywords: [
+        ...(blog.tags || []),
+        'Technical Blog',
+        'Software Engineering',
+        'Programming',
+        'Rahul Sharma',
+      ],
+      authors: [{ name: 'Rahul Sharma' }],
+      publishedTime: blog.date,
+      openGraph: {
+        title: `${blog.title} | Rahul Sharma`,
+        description:
+          blog.description ||
+          `Read about ${blog.title} - Technical article by Rahul Sharma`,
+        type: 'article',
+        publishedTime: blog.date,
+        authors: ['Rahul Sharma'],
+        tags: blog.tags || [],
+        images: [
+          {
+            url: blog.featuredImage || '/wallpaper.jpg',
+            width: 1200,
+            height: 630,
+            alt: blog.title,
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${blog.title} | Rahul Sharma`,
+        description:
+          blog.description ||
+          `Read about ${blog.title} - Technical article by Rahul Sharma`,
+        images: [blog.featuredImage || '/wallpaper.jpg'],
+      },
+      alternates: {
+        canonical: `https://www.holdmypotion.tech/blog/${slug}`,
+      },
+    };
+  } catch (error) {
+    return {
+      title: 'Blog Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  const blogs = getAllBlogs();
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
 
 export default async function BlogPostPage({ params }) {
   const { slug } = params;
@@ -24,42 +92,64 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.description || `Technical article about ${blog.title}`,
+    image: blog.featuredImage || '/wallpaper.jpg',
+    author: {
+      '@type': 'Person',
+      name: 'Rahul Sharma',
+      url: 'https://www.holdmypotion.tech',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Rahul Sharma',
+    },
+    datePublished: blog.date,
+    dateModified: blog.date,
+    keywords: blog.tags?.join(', ') || '',
+    url: `https://www.holdmypotion.tech/blog/${slug}`,
+  };
+
   return (
-    <div className='py-8'>
-      <div className='mb-6'>
-        <Link
-          href='/blog'
-          className='text-sm text-custom-comment hover:text-custom-fg transition-colors'
-        >
-          ← back to blog
-        </Link>
+    <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className='py-8'>
+        <div className='mb-6'>
+          <Link
+            href='/blog'
+            className='text-sm text-custom-comment hover:text-custom-fg transition-colors'
+          >
+            ← back to blog
+          </Link>
+        </div>
+
+        <article>
+          <header className='mb-8'>
+            <h1 className='text-2xl font-medium mb-2 text-custom-bright-fg'>
+              {blog.title}
+            </h1>
+            <div className='flex items-center space-x-2 text-sm text-custom-comment'>
+              <time dateTime={blog.date}>{blog.date}</time>
+              <span>•</span>
+              <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
+            </div>
+          </header>
+
+          <CodeHighlighter>
+            <div
+              className='prose prose-custom text-sm leading-relaxed max-w-none'
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
+          </CodeHighlighter>
+        </article>
+        <Contact />
       </div>
-
-      <article>
-        <header className='mb-8'>
-          <h1 className='text-2xl font-medium mb-2 text-custom-bright-fg'>
-            {blog.title}
-          </h1>
-          <div className='flex items-center space-x-2 text-sm text-custom-comment'>
-            <span>{blog.date}</span>
-            <span>•</span>
-            <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
-          </div>
-          {/* {blog.description && (
-            <p className='text-custom-comment mt-4 text-sm leading-relaxed'>
-              {blog.description}
-            </p>
-          )} */}
-        </header>
-
-        <CodeHighlighter>
-          <div
-            className='prose prose-custom text-sm leading-relaxed max-w-none'
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
-        </CodeHighlighter>
-      </article>
-      <Contact />
-    </div>
+    </>
   );
 }

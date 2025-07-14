@@ -25,7 +25,7 @@ export default function ProjectsPage() {
   if (loading) {
     return (
       <div className='py-8'>
-        <h2 className='text-2xl mb-6 text-custom-bright-fg'>projects</h2>
+        <h1 className='text-2xl mb-6 text-custom-bright-fg'>projects</h1>
         <p className='text-custom-comment text-sm'>Loading projects...</p>
       </div>
     );
@@ -33,7 +33,7 @@ export default function ProjectsPage() {
 
   return (
     <div className='py-8'>
-      <h2 className='text-2xl mb-6 text-custom-bright-fg'>projects</h2>
+      <h1 className='text-2xl mb-6 text-custom-bright-fg'>projects</h1>
       <div className='space-y-6 pb-8'>
         {projects.map((project, index) => (
           <ProjectCard key={project.slug || index} project={project} />

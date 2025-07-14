@@ -35,8 +35,8 @@ export default function ResumePage() {
 
   return (
     <div className='py-8'>
-      <h2 className='text-2xl mb-6 text-custom-bright-fg'>resume</h2>
-      <div className='space-y-2 pb-8'>
+      <h1 className='text-2xl mb-6 text-custom-bright-fg'>resume</h1>
+      <div className='space-y-2 pb-8' role='list' aria-label='Resume versions'>
         {resumes.map((resume, index) => (
           <ResumeCard key={index} resume={resume} />
         ))}

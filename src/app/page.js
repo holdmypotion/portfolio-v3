@@ -33,15 +33,17 @@ export default function HomePage() {
 
   return (
     <div className='py-8'>
-      <section className='pb-4'>
-        <h2 className='text-2xl mb-4 text-custom-bright-fg'>{profile.title}</h2>
+      <header className='pb-4'>
+        <h1 className='text-2xl mb-4 text-custom-bright-fg'>{profile.title}</h1>
         <p className='text-custom-soft-white max-w-2xl'>
           {profile.description}
         </p>
-      </section>
+      </header>
 
-      <section className='py-4'>
-        <h3 className='text-lg mb-3 text-custom-fg'>Skills</h3>
+      <section className='py-4' aria-labelledby='skills-heading'>
+        <h2 id='skills-heading' className='text-lg mb-3 text-custom-fg'>
+          Skills
+        </h2>
         <div className='space-y-2 text-sm'>
           <div>
             <strong className='text-custom-fg'>Languages:</strong>{' '}
@@ -81,25 +83,27 @@ export default function HomePage() {
       </section>
 
       {profile.experience && (
-        <section className='py-4'>
-          <h3 className='text-lg mb-4 text-custom-fg'>Experience</h3>
+        <section className='py-4' aria-labelledby='experience-heading'>
+          <h2 id='experience-heading' className='text-lg mb-4 text-custom-fg'>
+            Experience
+          </h2>
           <div className='space-y-4'>
             {profile.experience.map((exp, index) => (
-              <div
+              <article
                 key={index}
                 className='pb-4 border-b border-custom-border last:border-b-0'
               >
-                <div className='flex justify-between items-start mb-2'>
+                <header className='flex justify-between items-start mb-2'>
                   <div>
-                    <h4 className='font-medium text-base text-custom-bright-fg'>
+                    <h3 className='font-medium text-base text-custom-bright-fg'>
                       {exp.role}
-                    </h4>
+                    </h3>
                     <p className='text-sm text-custom-func'>{exp.company}</p>
                   </div>
-                  <span className='text-sm text-custom-comment'>
+                  <time className='text-sm text-custom-comment'>
                     {exp.period}
-                  </span>
-                </div>
+                  </time>
+                </header>
                 <ul className='text-sm text-custom-soft-white space-y-1 ml-4'>
                   {exp.highlights.map((highlight, i) => (
                     <li key={i} className='list-disc'>
@@ -107,7 +111,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
         </section>
