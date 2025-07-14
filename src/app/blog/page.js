@@ -78,7 +78,7 @@ export default function BlogPage() {
           />
         </div>
         <div className='flex flex-wrap gap-2 items-center'>
-          {allTags.map((tag) => {
+          {[...allTags].sort().map((tag) => {
             const isSelected = selectedTags.includes(tag);
             return (
               <button
