@@ -136,8 +136,7 @@ const DiagramModal = ({ isOpen, onClose, diagramData, title }) => {
   );
 };
 
-// TODO: Fix the rendering of compressed data
-export default function ExcalidrawViewer({ compressedData, title }) {
+export default function ExcalidrawViewer({ excalidrawData, title }) {
   const [diagramData, setDiagramData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -147,32 +146,17 @@ export default function ExcalidrawViewer({ compressedData, title }) {
   useEffect(() => {
     const loadAndProcessData = async () => {
       try {
-        if (!compressedData) {
+        if (!excalidrawData) {
           throw new Error('No diagram data provided');
         }
 
         let parsedData;
-
         try {
-          parsedData = JSON.parse(compressedData);
+          parsedData = JSON.parse(excalidrawData);
         } catch (parseError) {
-          try {
-            const { inflate } = await import('pako');
-
-            const binaryString = atob(compressedData);
-            const bytes = new Uint8Array(binaryString.length);
-            for (let i = 0; i < binaryString.length; i++) {
-              bytes[i] = binaryString.charCodeAt(i);
-            }
-
-            const decompressed = inflate(bytes, { to: 'string' });
-            parsedData = JSON.parse(decompressed);
-          } catch (decompressError) {
-            console.error('Decompression failed:', decompressError);
-            throw new Error(
-              `Failed to parse diagram data: ${parseError.message}. Decompression also failed: ${decompressError.message}`,
-            );
-          }
+          throw new Error(
+            `Failed to parse diagram data: ${parseError.message}`,
+          );
         }
 
         if (!parsedData || typeof parsedData !== 'object') {
@@ -211,7 +195,7 @@ export default function ExcalidrawViewer({ compressedData, title }) {
     };
 
     loadAndProcessData();
-  }, [compressedData, theme]);
+  }, [excalidrawData, theme]);
 
   if (isLoading) {
     return (

@@ -8,8 +8,9 @@ A minimal, clean portfolio built with Next.js featuring file-based content manag
 
 - 📝 Blog with markdown support
 - 🚀 Project showcase
+- 🔧 **Systems Design diagrams with Excalidraw support**
 - 📄 Resume versions management
-- 🔍 Search and filtering
+- 🔍 Search and filtering across all content
 - 📱 Responsive design
 - 🎨 Minimal, monospace aesthetic
 - ⌨️ Keyboard navigation shortcuts
@@ -56,7 +57,8 @@ Navigate quickly using keyboard shortcuts:
 - `r` - Go to Resume
 - `b` - Go to Blog
 - `p` - Go to Projects
-- `/` - Focus blog search (when on blog page)
+- `s` - Go to Systems Design
+- `/` - Focus search (when on blog/systems-design page)
 - `Escape` - Clear input focus
 
 ## Getting Started
@@ -159,6 +161,87 @@ publish_status: 'published' # or 'draft'
 Project details...
 ```
 
+### Adding Systems Design Diagrams
+
+Systems design content supports both Excalidraw diagrams and markdown documentation. There are two formats:
+
+**Option 1: Directory-based (Recommended)**
+
+Create a directory in `content/systems-design/` with both files:
+
+```
+content/systems-design/URL_Shortener/
+├── URL_Shortener.md
+└── URL_Shortener.excalidraw
+```
+
+**Markdown file format:**
+
+```markdown
+---
+title: 'URL Shortener System Design'
+date: '2025-01-15'
+description: 'Scalable URL shortening service design'
+tags: ['distributed-systems', 'caching']
+slug: 'url-shortener'
+publish_status: 'published' # or 'draft'
+---
+
+# System Design Content
+
+Your detailed system design explanation here...
+```
+
+**Option 2: Standalone Excalidraw file**
+
+Create a single `.excalidraw.md` file in `content/systems-design/`:
+
+```markdown
+---
+title: 'Payment System Design'
+date: '2025-01-15'
+description: 'Payment processing system like Stripe'
+tags: ['payments', 'microservices']
+slug: 'payment-system'
+publish_status: 'published'
+---
+
+# Excalidraw Data
+
+## Text Elements
+
+[Excalidraw compressed data here...]
+```
+
+**Available Systems Design Tags:**
+
+Use descriptive tags for categorization:
+
+- `distributed-systems` - Distributed architecture patterns
+- `microservices` - Microservice architectures
+- `caching` - Caching strategies and patterns
+- `databases` - Database design and scaling
+- `messaging` - Message queues and event systems
+- `security` - Security considerations
+- `scalability` - Scaling patterns
+- `real-time` - Real-time systems (WebSockets, streaming)
+- `storage` - File/object storage systems
+- `search` - Search engine implementations
+- `analytics` - Analytics and data processing
+- `payments` - Payment processing systems
+- `social` - Social media features
+- `content-delivery` - CDN and content systems
+- `monitoring` - Observability and monitoring
+
+**How Excalidraw Integration Works:**
+
+The portfolio uses `@excalidraw/excalidraw` to render interactive diagrams. Excalidraw files can be:
+
+- Created using the [Excalidraw web app](https://excalidraw.com) and exported
+- Embedded as compressed JSON data within markdown files
+- Stored as standalone `.excalidraw` files alongside markdown documentation
+- Viewed interactively with zoom, pan, and theme support
+
 ### Content Publishing System
 
 **Published vs Draft Content:**
@@ -191,6 +274,8 @@ The portfolio includes several API endpoints for dynamic content:
 - `GET /api/blogs` - Fetch all published blogs
 - `GET /api/blogs/tags` - Get all available blog tags
 - `GET /api/projects` - Fetch all published projects
+- `GET /api/systems-design` - Fetch all published systems design diagrams
+- `GET /api/systems-design/tags` - Get all available systems design tags
 - `GET /api/profile` - Get profile information
 
 ## SEO URLs
@@ -206,6 +291,7 @@ portfolio-v3/
 ├── content/
 │   ├── blogs/           # Blog markdown files
 │   ├── projects/        # Project markdown files
+│   ├── systems-design/  # Systems design diagrams and docs
 │   └── config/          # Configuration files
 ├── public/
 │   ├── resumes/         # Resume PDF files
@@ -218,9 +304,15 @@ portfolio-v3/
 │   │   ├── feed.xml/    # RSS feed generator
 │   │   ├── blog/        # Blog pages with metadata
 │   │   ├── projects/    # Project pages with metadata
+│   │   ├── systems-design/ # Systems design pages
 │   │   └── resume/      # Resume page
 │   ├── components/      # React components
+│   │   ├── ExcalidrawViewer.js  # Excalidraw diagram renderer
+│   │   ├── SystemsDesignCard.js # Systems design card component
+│   │   └── ...          # Other components
 │   └── lib/             # Utility functions
+│       ├── systems-design.js   # Systems design content utilities
+│       └── ...          # Other utilities
 ├── next.config.js       # Next.js config with SEO headers
 └── package.json
 ```
@@ -281,6 +373,7 @@ Before going live, ensure:
 
 ## Recent Updates
 
+- ✅ **Systems Design section with Excalidraw integration**
 - ✅ **Comprehensive SEO implementation**
 - ✅ Dynamic metadata for all pages
 - ✅ Open Graph and Twitter Cards
@@ -289,9 +382,10 @@ Before going live, ensure:
 - ✅ Security headers and performance optimization
 - ✅ Added publish_status functionality for content management
 - ✅ Implemented custom slug support for better URLs
-- ✅ Added keyboard navigation shortcuts
+- ✅ Added keyboard navigation shortcuts (including 's' for systems design)
 - ✅ Enhanced project status visualization
 - ✅ Improved accessibility with ARIA labels
+- ✅ Search and filtering across all content types
 
 ## Performance
 

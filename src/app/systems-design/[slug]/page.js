@@ -47,11 +47,7 @@ export default async function SystemsDesignDiagramPage({ params }) {
 
   let textContent = '';
   if (diagram.type === 'markdown' && diagram.content) {
-    const contentWithoutJson = diagram.content.replace(
-      /```compressed-json[\s\S]*?```/g,
-      '',
-    );
-    textContent = await markdownToHtml(contentWithoutJson);
+    textContent = await markdownToHtml(diagram.content);
   }
 
   return (
@@ -90,7 +86,7 @@ export default async function SystemsDesignDiagramPage({ params }) {
 
         <div className='mb-8'>
           <ExcalidrawViewer
-            compressedData={diagram.compressedData}
+            excalidrawData={diagram.excalidrawData}
             title={diagram.title}
           />
         </div>

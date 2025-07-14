@@ -44,7 +44,7 @@ function getSystemsDesignContentByDirName(dirName) {
 
     let frontmatter = {};
     let content = '';
-    let compressedData = null;
+    let excalidrawData = null;
 
     if (mdFile) {
       const mdPath = path.join(dirPath, mdFile);
@@ -54,34 +54,12 @@ function getSystemsDesignContentByDirName(dirName) {
         const { data, content: mdContent } = matter(mdContents);
         frontmatter = data;
         content = mdContent;
-
-        const obsidianMatch = content.match(
-          /# Excalidraw Data[\s\S]*?\n\n([\s\S]*?)%%/,
-        );
-        if (obsidianMatch) {
-          compressedData = obsidianMatch[1].replace(/\s/g, '');
-        } else {
-          let jsonMatch = content.match(/```compressed-json\n([\s\S]*?)\n```/);
-          if (jsonMatch) {
-            compressedData = jsonMatch[1];
-          } else {
-            jsonMatch = content.match(/```json\n([\s\S]*?)\n```/);
-            if (jsonMatch) {
-              compressedData = jsonMatch[1];
-            } else {
-              jsonMatch = content.match(/```\n([\s\S]*?)\n```/);
-              if (jsonMatch) {
-                compressedData = jsonMatch[1];
-              }
-            }
-          }
-        }
       }
     }
 
-    if (!compressedData && excalidrawFile) {
+    if (excalidrawFile) {
       const excalidrawPath = path.join(dirPath, excalidrawFile);
-      compressedData = fs.readFileSync(excalidrawPath, 'utf8');
+      excalidrawData = fs.readFileSync(excalidrawPath, 'utf8');
     }
 
     const title =
@@ -97,7 +75,7 @@ function getSystemsDesignContentByDirName(dirName) {
       tags: frontmatter.tags || [],
       content,
       frontmatter,
-      compressedData,
+      excalidrawData,
       type: content.trim() ? 'markdown' : 'excalidraw',
     };
   } catch (error) {
