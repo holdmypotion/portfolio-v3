@@ -2,6 +2,8 @@
 
 A minimal, clean portfolio built with Next.js featuring file-based content management and comprehensive SEO optimizations.
 
+<img width="5088" height="3232" alt="image" src="https://github.com/user-attachments/assets/bc5b12fa-747c-4ec1-bdb0-8bfb3609bb13" />
+
 ## Features
 
 - 📝 Blog with markdown support
