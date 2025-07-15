@@ -191,14 +191,23 @@ npm install
    - Update Twitter handle in the metadata
    - Verify email addresses in RSS feed and structured data
 
-5. **Optional**: Set up GitHub token for higher API rate limits:
+5. **Set up Google Analytics 4** (RECOMMENDED):
+
+```bash
+# .env.local
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+```
+
+Replace `G-XXXXXXXXXX` with your actual GA4 Measurement ID from Google Analytics.
+
+6. **Optional**: Set up GitHub token for higher API rate limits:
 
 ```bash
 # .env.local
 GITHUB_TOKEN=your_github_personal_access_token
 ```
 
-6. Run the development server:
+7. Run the development server:
 
 ```bash
 npm run dev
@@ -235,7 +244,7 @@ Before deploying, **YOU MUST UPDATE**:
 
 ### Optional Enhancements
 
-- Add **Google Analytics** or other tracking
+- ✅ **Google Analytics 4** integrated with Next.js optimization
 - Configure **GitHub token** for higher API rate limits
 - Add **custom social media images** for projects
 - Set up **automated deployment** on repository updates
@@ -510,6 +519,7 @@ Before deploying to production, ensure you've completed:
 
 ## Recent Updates
 
+- ✅ **Google Analytics 4 integration** with Next.js optimization and privacy-focused implementation
 - ✅ **GitHub-integrated project system** with real-time updates
 - ✅ **Enhanced project metadata** with stars, forks, language, topics
 - ✅ **GitHub API caching** for performance optimization

@@ -1,6 +1,19 @@
 import Link from 'next/link';
 
 export default function ProjectCard({ project }) {
+  const trackExternalLink = (linkType, url, projectName) => {
+    // Track external link clicks with GA4
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'project_link_click', {
+        link_type: linkType, // 'github' or 'live'
+        project_name: projectName,
+        destination_url: url,
+        event_category: 'engagement',
+        event_label: `${linkType}_${projectName}`,
+      });
+    }
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'production':
@@ -111,6 +124,9 @@ export default function ProjectCard({ project }) {
             className='underline hover:no-underline'
             target='_blank'
             rel='noopener noreferrer'
+            onClick={() =>
+              trackExternalLink('github', project.github, project.name)
+            }
           >
             github
           </a>
@@ -121,6 +137,9 @@ export default function ProjectCard({ project }) {
             className='underline hover:no-underline'
             target='_blank'
             rel='noopener noreferrer'
+            onClick={() =>
+              trackExternalLink('live', project.live, project.name)
+            }
           >
             live
           </a>

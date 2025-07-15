@@ -1,11 +1,26 @@
 import Link from 'next/link';
 
 export default function SystemsDesignCard({ diagram }) {
+  const handleDiagramClick = () => {
+    // Track systems design diagram engagement with GA4
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'systems_design_click', {
+        diagram_title: diagram.title,
+        diagram_slug: diagram.slug,
+        diagram_tags: diagram.tags ? diagram.tags.join(', ') : '',
+        event_category: 'engagement',
+        event_label: diagram.title,
+      });
+    }
+  };
   return (
     <div className='py-4 border-b border-custom-border'>
       <div className='flex items-start justify-between mb-2'>
         <div className='flex-1'>
-          <Link href={`/systems-design/${diagram.slug}`}>
+          <Link
+            href={`/systems-design/${diagram.slug}`}
+            onClick={handleDiagramClick}
+          >
             <h3 className='text-sm font-medium hover:underline cursor-pointer text-custom-soft-white hover:text-custom-bright-fg transition-colors'>
               {diagram.title}
             </h3>

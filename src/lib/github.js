@@ -73,9 +73,6 @@ export async function getShowcaseRepositories(includeDrafts = false) {
   const config = getGitHubConfig();
 
   try {
-    console.log('Fetching showcase repositories from config...');
-
-    // Handle both old array format and new object format for backward compatibility
     const repoConfigs = config.showcase_repos.map((repo) => {
       // If it's a string (old format), convert to object
       if (typeof repo === 'string') {
@@ -123,10 +120,8 @@ export async function getShowcaseRepositories(includeDrafts = false) {
       }),
     );
 
-    // Filter out null results (failed fetches)
     const validRepos = repos.filter((repo) => repo !== null);
 
-    console.log(`Successfully fetched ${validRepos.length} repositories`);
     return validRepos;
   } catch (error) {
     console.error('Error fetching showcase repositories:', error);

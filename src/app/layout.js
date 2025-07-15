@@ -2,6 +2,7 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import KeyboardNavigation from '@/components/KeyboardNavigation';
 import { ThemeProvider } from '@/components/ThemeContext';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   metadataBase: new URL('https://www.holdmypotion.tech/'),
@@ -147,6 +148,10 @@ export default function RootLayout({ children }) {
           <Navigation />
           <main className='max-w-4xl mx-auto p-4'>{children}</main>
         </ThemeProvider>
+        {process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_GA_ID && (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          )}
       </body>
     </html>
   );

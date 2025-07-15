@@ -32,8 +32,6 @@ export default function BlogPage() {
 
   useEffect(() => {
     const filtered = blogs.filter((blog) => {
-      console.log(blog.title, blog.slug);
-      // Defensive check: ensure title exists before calling toLowerCase()
       const title = blog.title || '';
       const matchesSearch = title
         .toLowerCase()
