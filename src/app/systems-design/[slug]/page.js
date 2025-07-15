@@ -74,11 +74,17 @@ export default async function SystemsDesignDiagramPage({ params }) {
           )}
 
           <div className='flex items-center space-x-2 text-sm text-custom-comment'>
-            <time dateTime={diagram.date}>{diagram.date}</time>
+            <div className='flex items-center space-x-1'>
+              <span className='text-[10px]'>📅</span>
+              <time dateTime={diagram.date}>{diagram.date}</time>
+            </div>
             {diagram.tags && diagram.tags.length > 0 && (
               <>
                 <span>•</span>
-                <span>{diagram.tags.join(', ')}</span>
+                <div className='flex items-center space-x-1'>
+                  <span className='text-[10px]'>🔖</span>
+                  <span>{diagram.tags.join(', ')}</span>
+                </div>
               </>
             )}
           </div>

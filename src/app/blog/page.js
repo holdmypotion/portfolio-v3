@@ -66,6 +66,7 @@ export default function BlogPage() {
         setSelectedTags={setSelectedTags}
         allTags={allTags}
         searchInputId='blog-search'
+        searchPlaceholder='search blogs... (press / to focus)'
         searchAriaLabel='Search blog posts'
       />
 

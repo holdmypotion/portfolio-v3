@@ -136,9 +136,15 @@ export default async function BlogPostPage({ params }) {
               {blog.title}
             </h1>
             <div className='flex items-center space-x-2 text-sm text-custom-comment'>
-              <time dateTime={blog.date}>{blog.date}</time>
+              <div className='flex items-center space-x-1'>
+                <span className='text-[10px]'>📅</span>
+                <time dateTime={blog.date}>{blog.date}</time>
+              </div>
               <span>•</span>
-              <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
+              <div className='flex items-center space-x-1'>
+                <span className='text-[10px]'>🔖</span>
+                <span>{blog.tags ? blog.tags.join(', ') : ''}</span>
+              </div>
             </div>
           </header>
 

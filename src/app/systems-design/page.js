@@ -66,6 +66,7 @@ export default function SystemsDesignPage() {
         setSelectedTags={setSelectedTags}
         allTags={allTags}
         searchInputId='systems-design-search'
+        searchPlaceholder='search systems design... (press / to focus)'
         searchAriaLabel='Search systems design'
       />
 

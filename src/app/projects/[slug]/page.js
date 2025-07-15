@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { getProjectBySlug, getAllProjects } from '@/lib/projects';
+import { getGitHubProjectBySlug, getAllGitHubProjects } from '@/lib/github';
+import { markdownToHtml } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 import CodeHighlighter from '@/components/CodeHighlighter';
 import Contact from '@/components/Contact';
@@ -8,8 +9,7 @@ export async function generateMetadata({ params }) {
   const { slug } = params;
 
   try {
-    const projectData = await getProjectBySlug(slug);
-    const project = projectData.frontmatter;
+    const project = await getGitHubProjectBySlug(slug);
 
     return {
       title: project.name,
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }) {
       keywords: [
         project.name,
         ...(project.tech?.split(', ') || []),
+        ...(project.topics || []),
         'Software Project',
         'Portfolio',
         'Development',
@@ -64,23 +65,31 @@ export async function generateMetadata({ params }) {
 
 // Generate static params for all projects
 export async function generateStaticParams() {
-  const projects = getAllProjects();
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  try {
+    const githubProjects = await getAllGitHubProjects();
+    return githubProjects.map((project) => ({
+      slug: project.slug,
+    }));
+  } catch (error) {
+    console.error('Failed to generate static params from GitHub:', error);
+    return [];
+  }
 }
 
 export default async function ProjectPage({ params }) {
   const { slug } = params;
 
   let project;
+
   try {
-    const projectData = await getProjectBySlug(slug);
-    project = {
-      ...projectData.frontmatter,
-      content: projectData.content,
-      slug: projectData.slug,
-    };
+    project = await getGitHubProjectBySlug(slug);
+
+    // Convert README markdown to HTML
+    if (project.readme_content) {
+      project.content = await markdownToHtml(project.readme_content);
+    } else {
+      project.content = '<p>No README content available for this project.</p>';
+    }
   } catch (error) {
     console.error('Error loading project:', error);
     notFound();
@@ -93,14 +102,26 @@ export default async function ProjectPage({ params }) {
   const getStatusColor = (status) => {
     switch (status) {
       case 'production':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
       case 'active':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400';
+      case 'maintenance':
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
       case 'archived':
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-gray-100 text-gray-600 dark:bg-gray-800/20 dark:text-gray-400';
       default:
-        return 'bg-gray-100 text-gray-600';
+        return 'bg-gray-100 text-gray-600 dark:bg-gray-800/20 dark:text-gray-400';
     }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   };
 
   // JSON-LD structured data for project
@@ -119,6 +140,9 @@ export default async function ProjectPage({ params }) {
     },
     applicationCategory: 'WebApplication',
     operatingSystem: 'Web Browser',
+    keywords: project.topics,
+    dateCreated: project.created_at,
+    dateModified: project.updated_at,
   };
 
   return (
@@ -143,20 +167,63 @@ export default async function ProjectPage({ params }) {
               <h1 className='text-2xl font-medium text-custom-bright-fg'>
                 {project.name}
               </h1>
-              <span
-                className={`text-xs px-2 py-1 ${getStatusColor(
-                  project.status,
-                )}`}
-              >
-                {project.status}
-              </span>
+              <div className='flex items-center space-x-2'>
+                <span
+                  className={`text-xs px-2 py-1 rounded-md ${getStatusColor(
+                    project.status,
+                  )}`}
+                >
+                  {project.status}
+                </span>
+              </div>
             </div>
 
             <p className='text-custom-soft-white mb-4'>{project.description}</p>
 
+            {/* GitHub-specific stats */}
+            <div className='flex items-center space-x-4 text-sm text-custom-comment mb-4'>
+              {project.language && (
+                <div className='flex items-center space-x-1'>
+                  <span className='w-2 h-2 bg-blue-400 rounded-full'></span>
+                  <span>{project.language}</span>
+                </div>
+              )}
+              {project.stars !== undefined && (
+                <div className='flex items-center space-x-1'>
+                  <span>⭐</span>
+                  <span>{project.stars}</span>
+                </div>
+              )}
+              {project.forks !== undefined && (
+                <div className='flex items-center space-x-1'>
+                  <span>🍴</span>
+                  <span>{project.forks}</span>
+                </div>
+              )}
+              {project.updated_at && (
+                <div className='flex items-center space-x-1'>
+                  <span>📅</span>
+                  <span>Updated {formatDate(project.updated_at)}</span>
+                </div>
+              )}
+            </div>
+
             {project.tech && (
               <div className='text-sm text-custom-comment mb-4'>
                 <strong className='text-custom-fg'>Tech:</strong> {project.tech}
+              </div>
+            )}
+
+            {project.topics && project.topics.length > 0 && (
+              <div className='flex flex-wrap gap-1 mb-4'>
+                {project.topics.map((topic) => (
+                  <span
+                    key={topic}
+                    className='text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded-md'
+                  >
+                    {topic}
+                  </span>
+                ))}
               </div>
             )}
 

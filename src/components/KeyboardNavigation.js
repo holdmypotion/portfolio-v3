@@ -32,6 +32,13 @@ export default function KeyboardNavigation() {
             searchInput.focus();
           }
           return;
+        } else if (pathname.startsWith('/projects')) {
+          event.preventDefault();
+          const searchInput = document.querySelector('#projects-search');
+          if (searchInput) {
+            searchInput.focus();
+          }
+          return;
         }
       }
 

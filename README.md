@@ -1,13 +1,13 @@
 # Portfolio v3
 
-A minimal, clean portfolio built with Next.js featuring file-based content management and comprehensive SEO optimizations.
+A minimal, clean portfolio built with Next.js featuring file-based content management, GitHub project integration, and comprehensive SEO optimizations.
 
 <img width="5088" height="3232" alt="image" src="https://github.com/user-attachments/assets/bc5b12fa-747c-4ec1-bdb0-8bfb3609bb13" />
 
 ## Features
 
 - 📝 Blog with markdown support
-- 🚀 Project showcase
+- 🚀 **GitHub-integrated project showcase** with real-time data
 - 🔧 **Systems Design diagrams with Excalidraw support**
 - 📄 Resume versions management
 - 🔍 Search and filtering across all content
@@ -18,15 +18,17 @@ A minimal, clean portfolio built with Next.js featuring file-based content manag
 - 🔗 Custom slug support
 - 🎯 Smart content filtering
 - 🔍 **Comprehensive SEO optimizations**
+- ⭐ **GitHub repository stats** (stars, forks, language, topics)
+- 🔄 **Live project updates** from GitHub API with caching
 
 ## SEO Features
 
 ### ✅ Technical SEO
 
-- **Dynamic metadata generation** for all pages
+- **Dynamic metadata generation** for all pages (including GitHub projects)
 - **Open Graph** and **Twitter Card** support
-- **JSON-LD structured data** for rich snippets
-- **Sitemap.xml** auto-generation
+- **JSON-LD structured data** for rich snippets (Person, SoftwareApplication schemas)
+- **Sitemap.xml** auto-generation (includes GitHub projects)
 - **robots.txt** configuration
 - **RSS feed** for blog posts
 - **Canonical URLs** to prevent duplicate content
@@ -36,18 +38,123 @@ A minimal, clean portfolio built with Next.js featuring file-based content manag
 ### ✅ Performance & Accessibility
 
 - **Viewport meta tag** for mobile SEO
-- **Security headers** (CSP, XSS protection)
+- **Security headers** (CSP, XSS protection, Content-Type-Options)
 - **Aria labels** and semantic markup
-- **Image optimization** ready
+- **Image optimization** configuration
 - **Fast loading** with Next.js optimizations
+- **Caching strategies** for GitHub API calls
 
 ### ✅ Content SEO
 
-- **Individual page metadata** for blogs and projects
+- **Individual page metadata** for blogs, projects, and systems design
 - **Dynamic titles and descriptions**
-- **Keyword optimization**
+- **Keyword optimization** with project-specific terms
 - **Rich snippets** with structured data
 - **Social media sharing** optimization
+- **GitHub project metadata** integration
+
+## GitHub Project Integration
+
+### How It Works
+
+Projects are now dynamically fetched from your GitHub repositories instead of static markdown files. This provides:
+
+- **Real-time updates** from your GitHub activity
+- **Automatic project metadata** (stars, forks, language, topics)
+- **README content** integration
+- **Repository statistics** and status tracking
+- **SEO optimization** with structured data
+
+### Configuration
+
+Projects are configured via `content/config/github.json`:
+
+```json
+{
+  "username": "your-github-username",
+  "showcase_repos": [
+    {
+      "name": "repo-name-1",
+      "publish_status": "published"
+    },
+    {
+      "name": "repo-name-2",
+      "publish_status": "published"
+    },
+    {
+      "name": "repo-name-3",
+      "publish_status": "draft"
+    }
+  ],
+  "display_settings": {
+    "show_stars": true,
+    "show_forks": true,
+    "show_language": true,
+    "show_topics": true,
+    "show_last_updated": true,
+    "max_topics_display": 5
+  }
+}
+```
+
+**Repository Configuration Options:**
+
+- `name`: The GitHub repository name
+- `publish_status`: Controls visibility on your website
+  - `"published"` - Project is visible on the website
+  - `"draft"` - Project is hidden from the website (but still configured)
+
+**Backward Compatibility**: The old array format `["repo-name-1", "repo-name-2"]` is still supported and will default all repositories to `published` status.
+
+### Project Data Structure
+
+Each GitHub project includes:
+
+- **Basic Info**: Name, description, tech stack
+- **GitHub Stats**: Stars, forks, primary language
+- **Repository Topics**: For categorization
+- **README Content**: Automatically fetched and rendered
+- **Status Classification**: Active, maintenance, archived
+- **SEO Metadata**: Structured data for search engines
+
+### GitHub API Integration
+
+The system uses GitHub's REST API with the following features:
+
+- **Caching**: 10-minute cache to avoid rate limits
+- **Authentication**: Optional GitHub token for higher rate limits
+- **Error Handling**: Graceful fallbacks when API is unavailable
+- **Batch Processing**: Efficient fetching of multiple repositories
+
+### Adding Projects
+
+1. **Create/update your GitHub repository**
+2. **Add repository to `showcase_repos`** in `content/config/github.json`:
+   ```json
+   {
+     "name": "your-repo-name",
+     "publish_status": "published" // or "draft" to hide initially
+   }
+   ```
+3. **Optional**: Add topics to your GitHub repo for better categorization
+4. **Optional**: Ensure your README is informative for better project pages
+
+### Managing Project Visibility
+
+You can control which projects appear on your website without removing them from the configuration:
+
+- **Show a project**: Set `publish_status: "published"`
+- **Hide a project**: Set `publish_status: "draft"`
+- **Testing**: Projects with `draft` status are hidden from visitors but can be accessed directly via URL during development
+
+### GitHub Token Setup (Optional)
+
+For higher API rate limits, set the `GITHUB_TOKEN` environment variable:
+
+```bash
+# .env.local
+GITHUB_TOKEN=your_github_personal_access_token
+```
 
 ## Keyboard Navigation
 
@@ -69,43 +176,71 @@ Navigate quickly using keyboard shortcuts:
 npm install
 ```
 
-2. **Configure your domain**: Replace `https://www.holdmypotion.tech` in the following files:
+2. **Configure your GitHub projects**: Update `content/config/github.json` with your GitHub username and showcase repositories
+
+3. **Configure your domain**: Replace `https://www.holdmypotion.tech` in the following files:
 
    - `src/app/layout.js`
    - `src/app/sitemap.js`
    - `src/app/feed.xml/route.js`
    - `public/robots.txt`
 
-3. **Set up SEO verification** (optional):
+4. **Set up SEO verification** (REQUIRED for production):
 
    - Add Google Search Console verification code in `src/app/layout.js`
-   - Update social media handles in the metadata
+   - Update Twitter handle in the metadata
+   - Verify email addresses in RSS feed and structured data
 
-4. Run the development server:
+5. **Optional**: Set up GitHub token for higher API rate limits:
+
+```bash
+# .env.local
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+6. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+7. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## SEO Configuration
 
-### Required Changes
+### Required Changes for Production
 
-Before deploying, make sure to update:
+Before deploying, **YOU MUST UPDATE**:
 
-1. **Domain URLs** in all SEO files
-2. **Google verification code** in layout.js
+1. **Domain URLs** in all SEO files (layout.js, sitemap.js, feed.xml/route.js, robots.txt)
+2. **Google verification code** in `src/app/layout.js` (currently placeholder)
 3. **Twitter handle** in social metadata
-4. **Email address** in RSS feed
+4. **Email addresses** in RSS feed and structured data
+5. **GitHub username** in `content/config/github.json`
+
+### Production SEO Checklist
+
+- [ ] **Google Search Console verification code** updated
+- [ ] **Domain URLs** updated in all files
+- [ ] **Social media handles** verified (Twitter, LinkedIn)
+- [ ] **Email addresses** updated in RSS feed and structured data
+- [ ] **GitHub configuration** completed
+- [ ] **Sitemap accessible** at `/sitemap.xml`
+- [ ] **RSS feed working** at `/feed.xml`
+- [ ] **robots.txt configured** correctly
+- [ ] **Structured data validated** (use Google's Rich Results Test)
+- [ ] **Open Graph images** optimized
+- [ ] **Mobile responsiveness** tested
+- [ ] **Page speed** optimized
 
 ### Optional Enhancements
 
 - Add **Google Analytics** or other tracking
-- Set up **Google Search Console**
-- Configure **social media meta images**
-- Add **favicon variations** for different devices
+- Configure **GitHub token** for higher API rate limits
+- Add **custom social media images** for projects
+- Set up **automated deployment** on repository updates
+- Add **404 page** optimization
+- Configure **security headers** (already partially implemented)
 
 ## Content Management
 
@@ -140,26 +275,6 @@ Your blog content here...
 9. `personal-development` - Self-improvement, productivity, psychology
 10. `tools` - DevOps, Docker, development tools
 11. `web` - Web development, JavaScript, React
-
-### Adding a Project
-
-Create a new markdown file in `content/projects/` with the format:
-
-```markdown
----
-name: 'project-name'
-description: 'Project description for SEO'
-tech: 'Tech stack'
-github: 'https://github.com/username/repo'
-live: 'https://project-url.com'
-status: 'production' # or 'active', 'archived'
-featured: true
-slug: 'custom-project-slug'
-publish_status: 'published' # or 'draft'
----
-
-Project details...
-```
 
 ### Adding Systems Design Diagrams
 
@@ -256,11 +371,12 @@ The portfolio uses `@excalidraw/excalidraw` to render interactive diagrams. Exca
 - If no slug is provided, the filename is used as the slug
 - Custom slugs allow for cleaner, more SEO-friendly URLs
 
-### Project Status Types
+### Project Status Types (Auto-determined from GitHub)
 
 - `production` - Live, deployed projects (green indicator)
-- `active` - Currently being developed (blue indicator)
-- `archived` - No longer maintained (orange indicator)
+- `active` - Recently updated projects (blue indicator)
+- `maintenance` - Moderately active projects (yellow indicator)
+- `archived` - Archived or inactive projects (gray indicator)
 
 ### Updating Resume
 
@@ -273,14 +389,14 @@ The portfolio includes several API endpoints for dynamic content:
 
 - `GET /api/blogs` - Fetch all published blogs
 - `GET /api/blogs/tags` - Get all available blog tags
-- `GET /api/projects` - Fetch all published projects
+- `GET /api/projects` - Fetch all published projects from GitHub
 - `GET /api/systems-design` - Fetch all published systems design diagrams
 - `GET /api/systems-design/tags` - Get all available systems design tags
 - `GET /api/profile` - Get profile information
 
 ## SEO URLs
 
-- `GET /sitemap.xml` - Auto-generated sitemap
+- `GET /sitemap.xml` - Auto-generated sitemap (includes GitHub projects)
 - `GET /robots.txt` - Search engine crawling instructions
 - `GET /feed.xml` - RSS feed for blog posts
 
@@ -290,9 +406,11 @@ The portfolio includes several API endpoints for dynamic content:
 portfolio-v3/
 ├── content/
 │   ├── blogs/           # Blog markdown files
-│   ├── projects/        # Project markdown files
 │   ├── systems-design/  # Systems design diagrams and docs
 │   └── config/          # Configuration files
+│       ├── github.json  # GitHub integration config
+│       ├── profile.json # Profile information
+│       └── resumes.json # Resume versions
 ├── public/
 │   ├── resumes/         # Resume PDF files
 │   ├── robots.txt       # SEO crawling instructions
@@ -303,15 +421,16 @@ portfolio-v3/
 │   │   ├── sitemap.js   # Dynamic sitemap generator
 │   │   ├── feed.xml/    # RSS feed generator
 │   │   ├── blog/        # Blog pages with metadata
-│   │   ├── projects/    # Project pages with metadata
+│   │   ├── projects/    # Project pages with GitHub integration
 │   │   ├── systems-design/ # Systems design pages
 │   │   └── resume/      # Resume page
 │   ├── components/      # React components
 │   │   ├── ExcalidrawViewer.js  # Excalidraw diagram renderer
-│   │   ├── SystemsDesignCard.js # Systems design card component
+│   │   ├── ProjectCard.js       # Project card with GitHub data
 │   │   └── ...          # Other components
 │   └── lib/             # Utility functions
-│       ├── systems-design.js   # Systems design content utilities
+│       ├── github.js           # GitHub API integration
+│       ├── systems-design.js   # Systems design utilities
 │       └── ...          # Other utilities
 ├── next.config.js       # Next.js config with SEO headers
 └── package.json
@@ -323,14 +442,24 @@ portfolio-v3/
 - **Type-safe** - Built with modern JavaScript practices
 - **Responsive** - Works on all device sizes
 - **SEO-friendly** - Comprehensive optimization for search engines
-- **Performance** - Fast loading and navigation
+- **Performance** - Fast loading and navigation with GitHub API caching
 - **Accessibility** - WCAG compliant markup and navigation
+- **GitHub Integration** - Real-time project updates from repositories
 
 ## Deployment
 
 This project can be deployed on Vercel, Netlify, or any static hosting platform.
 
 ### For Vercel (Recommended):
+
+1. Set up GitHub token (optional but recommended):
+
+```bash
+# In Vercel dashboard, add environment variable:
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+2. Deploy:
 
 ```bash
 npm run build
@@ -340,59 +469,70 @@ The site will be automatically deployed when you push to your repository.
 
 ### For Static Hosting:
 
-Uncomment the static export settings in `next.config.js`:
+Note: GitHub integration requires server-side API routes. For static hosting, you'll need to disable GitHub integration or use a different approach.
 
-```javascript
-output: 'export',
-trailingSlash: true,
-images: {
-  unoptimized: true,
-},
-```
+## Production Deployment Checklist
 
-Then build:
+Before deploying to production, ensure you've completed:
 
-```bash
-npm run build
-```
+### ✅ Required Configuration
 
-## SEO Checklist
+- [ ] **GitHub configuration** updated in `content/config/github.json`
+- [ ] **Domain URLs** updated in all SEO files
+- [ ] **Google verification code** updated in `src/app/layout.js`
+- [ ] **Twitter handle** updated in metadata
+- [ ] **Email addresses** updated in RSS feed and structured data
 
-Before going live, ensure:
+### ✅ SEO Verification
 
-- [ ] Domain URLs updated in all files
-- [ ] Google Search Console set up
-- [ ] Social media metadata configured
-- [ ] RSS feed working (`/feed.xml`)
-- [ ] Sitemap accessible (`/sitemap.xml`)
-- [ ] robots.txt configured
-- [ ] All pages have unique titles and descriptions
-- [ ] Structured data validated
-- [ ] Mobile-friendly tested
-- [ ] Page speed optimized
+- [ ] **Google Search Console** set up and verified
+- [ ] **Sitemap submitted** to search engines
+- [ ] **RSS feed** accessible at `/feed.xml`
+- [ ] **robots.txt** configured correctly
+- [ ] **Structured data** validated with Google's Rich Results Test
+- [ ] **Open Graph images** optimized and working
+- [ ] **Mobile responsiveness** tested
+- [ ] **Page speed** optimized
+
+### ✅ GitHub Integration
+
+- [ ] **GitHub token** configured for higher API limits (recommended)
+- [ ] **Showcase repositories** selected and configured
+- [ ] **Repository READMEs** are informative and well-formatted
+- [ ] **Repository topics** added for better categorization
+
+### ✅ Content Review
+
+- [ ] **Blog posts** reviewed and published
+- [ ] **Systems design** diagrams tested and accessible
+- [ ] **Resume** updated and accessible
+- [ ] **Profile information** current and accurate
 
 ## Recent Updates
 
-- ✅ **Systems Design section with Excalidraw integration**
-- ✅ **Comprehensive SEO implementation**
-- ✅ Dynamic metadata for all pages
-- ✅ Open Graph and Twitter Cards
-- ✅ JSON-LD structured data
-- ✅ Auto-generated sitemap and RSS feed
-- ✅ Security headers and performance optimization
-- ✅ Added publish_status functionality for content management
-- ✅ Implemented custom slug support for better URLs
-- ✅ Added keyboard navigation shortcuts (including 's' for systems design)
-- ✅ Enhanced project status visualization
-- ✅ Improved accessibility with ARIA labels
-- ✅ Search and filtering across all content types
+- ✅ **GitHub-integrated project system** with real-time updates
+- ✅ **Enhanced project metadata** with stars, forks, language, topics
+- ✅ **GitHub API caching** for performance optimization
+- ✅ **Dynamic project SEO** with structured data
+- ✅ **Repository-based project management** via configuration
+- ✅ **Project publish/draft status** for controlling visibility
+- ✅ **Comprehensive SEO implementation** with production-ready features
+- ✅ **Systems Design section** with Excalidraw integration
+- ✅ **Security headers** and performance optimization
+- ✅ **Publish/draft content management** system
+- ✅ **Custom slug support** for better URLs
+- ✅ **Keyboard navigation shortcuts**
+- ✅ **Enhanced accessibility** with ARIA labels
+- ✅ **Search and filtering** across all content types
 
-## Performance
+## Performance & SEO
 
 The portfolio is optimized for:
 
 - **Core Web Vitals** compliance
-- **Fast loading** with Next.js optimization
-- **SEO-friendly** URLs and structure
+- **Fast loading** with Next.js optimization and GitHub API caching
+- **SEO-friendly** URLs and structure with GitHub project integration
 - **Mobile-first** responsive design
 - **Accessibility** standards (WCAG 2.1)
+- **Rich snippets** with JSON-LD structured data
+- **Social media** sharing optimization

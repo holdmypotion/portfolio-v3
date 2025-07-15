@@ -1,7 +1,7 @@
 import { getAllBlogs } from '@/lib/blogs';
-import { getAllProjects } from '@/lib/projects';
+import { getAllGitHubProjects } from '@/lib/github';
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = 'https://www.holdmypotion.tech';
 
   // Get all blog posts
@@ -13,14 +13,20 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  // Get all projects
-  const projects = getAllProjects();
-  const projectUrls = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  // Get all projects from GitHub
+  let projectUrls = [];
+  try {
+    const projects = await getAllGitHubProjects();
+    projectUrls = projects.map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: new Date(project.updated_at || Date.now()),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.error('Error fetching projects for sitemap:', error);
+    // Continue without project URLs if GitHub API fails
+  }
 
   // Static pages
   const staticUrls = [
