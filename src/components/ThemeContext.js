@@ -49,6 +49,12 @@ export const ThemeProvider = ({ children }) => {
     if (isLoaded) {
       // Apply theme to document root and save to localStorage
       document.documentElement.setAttribute('data-theme', theme);
+      // Also apply/remove the 'dark' class for Tailwind dark mode
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
       localStorage.setItem('portfolio-theme', theme);
     }
   }, [theme, isLoaded]);

@@ -4,15 +4,15 @@ export default function ProjectCard({ project }) {
   const getStatusColor = (status) => {
     switch (status) {
       case 'production':
-        return 'bg-green-500/20 text-green-400 border border-green-500/30';
+        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
       case 'active':
-        return 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400';
       case 'maintenance':
-        return 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30';
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
       case 'archived':
-        return 'bg-orange-500/20 text-orange-400 border border-orange-500/30';
+        return 'bg-gray-100 text-gray-600 dark:bg-gray-800/20 dark:text-gray-400';
       default:
-        return 'bg-gray-500/20 text-gray-400 border border-gray-500/30';
+        return 'bg-gray-100 text-gray-600 dark:bg-gray-800/20 dark:text-gray-400';
     }
   };
 
@@ -45,9 +45,11 @@ export default function ProjectCard({ project }) {
         </div>
       </div>
 
-      <p className='text-sm text-gray-300 mb-2'>{project.description}</p>
+      <p className='text-sm text-gray-900 dark:text-gray-300 mb-2'>
+        {project.description}
+      </p>
 
-      <div className='text-xs text-gray-600 mb-3'>
+      <div className='text-xs text-gray-800 dark:text-gray-600 mb-3'>
         <strong>Tech:</strong> {project.tech}
       </div>
 
@@ -55,7 +57,7 @@ export default function ProjectCard({ project }) {
       {(project.stars !== undefined ||
         project.forks !== undefined ||
         project.language) && (
-        <div className='flex items-center space-x-4 text-xs text-gray-500 mb-3'>
+        <div className='flex items-center space-x-4 text-xs text-gray-700 dark:text-gray-500 mb-3'>
           {project.language && (
             <div className='flex items-center space-x-1'>
               <span className='w-2 h-2 bg-blue-400 rounded-full'></span>
@@ -95,7 +97,7 @@ export default function ProjectCard({ project }) {
             </span>
           ))}
           {project.topics.length > 5 && (
-            <span className='text-xs text-gray-500'>
+            <span className='text-xs text-gray-700 dark:text-gray-500'>
               +{project.topics.length - 5} more
             </span>
           )}
