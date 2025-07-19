@@ -3,30 +3,48 @@ import Navigation from '@/components/Navigation';
 import KeyboardNavigation from '@/components/KeyboardNavigation';
 import { ThemeProvider } from '@/components/ThemeContext';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import fs from 'fs';
+import path from 'path';
+
+let profile;
+try {
+  const profilePath = path.join(process.cwd(), 'content/config/profile.json');
+  const profileData = fs.readFileSync(profilePath, 'utf8');
+  profile = JSON.parse(profileData);
+} catch (error) {
+  profile = {
+    name: 'Rahul Sharma',
+    title: 'Software Engineer',
+    description:
+      'Software Development Engineer with expertise in building scalable, AI-driven solutions and optimizing cloud infrastructure. Experienced in Python, Ruby, TypeScript, and modern web technologies.',
+    contact: {
+      email: 'holdmypotion@gmail.com',
+      github: 'https://github.com/holdmypotion',
+      linkedin: 'https://linkedin.com/in/holdmypotion',
+    },
+  };
+}
 
 export const metadata = {
   metadataBase: new URL('https://www.holdmypotion.tech/'),
   title: {
-    default: 'Rahul Sharma - Software Engineer',
-    template: '%s | Rahul Sharma',
+    default: `${profile.name} - ${profile.title}`,
+    template: `%s | ${profile.name}`,
   },
-  description:
-    'Software Development Engineer with expertise in building scalable, AI-driven solutions and optimizing cloud infrastructure. Experienced in Python, Ruby, TypeScript, and modern web technologies.',
+  description: profile.description,
   keywords: [
+    profile.title,
     'Software Engineer',
     'Full Stack Developer',
-    'Python Developer',
-    'React Developer',
-    'AI Engineering',
-    'Cloud Infrastructure',
-    'DevOps',
-    'Backend Development',
-    'Rahul Sharma',
-    'Software Development',
+    ...((profile.skills && profile.skills.languages) || []),
+    ...((profile.skills && profile.skills.frameworks) || []),
+    ...((profile.skills && profile.skills.databases) || []),
+    ...((profile.skills && profile.skills.tools) || []),
+    profile.name,
   ],
-  authors: [{ name: 'Rahul Sharma' }],
-  creator: 'Rahul Sharma',
-  publisher: 'Rahul Sharma',
+  authors: [{ name: profile.name }],
+  creator: profile.name,
+  publisher: profile.name,
   robots: {
     index: true,
     follow: true,
@@ -42,26 +60,24 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.holdmypotion.tech',
-    title: 'Rahul Sharma - Software Engineer',
-    description:
-      'Software Development Engineer with expertise in building scalable, AI-driven solutions and optimizing cloud infrastructure.',
-    siteName: 'Rahul Sharma Portfolio',
+    title: `${profile.name} - ${profile.title}`,
+    description: profile.description,
+    siteName: `${profile.name} Portfolio`,
     images: [
       {
-        url: '/wallpaper.jpg',
+        url: '/LandingPage.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Rahul Sharma - Software Engineer Portfolio',
+        alt: `${profile.name} - ${profile.title} Portfolio`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rahul Sharma - Software Engineer',
-    description:
-      'Software Development Engineer with expertise in building scalable, AI-driven solutions and optimizing cloud infrastructure.',
-    images: ['/wallpaper.jpg'],
-    creator: '@holdmypotion', // Replace with actual Twitter handle
+    title: `${profile.name} - ${profile.title}`,
+    description: profile.description,
+    images: ['/LandingPage.jpeg'],
+    creator: '@holdmypotion', // Replace with actual Twitter handle if available
   },
   verification: {
     google: 'your-google-verification-code', // Replace with actual verification code
@@ -70,7 +86,7 @@ export const metadata = {
     canonical: 'https://www.holdmypotion.tech',
     types: {
       'application/rss+xml': [
-        { url: '/feed.xml', title: 'Rahul Sharma Blog RSS Feed' },
+        { url: '/feed.xml', title: `${profile.name} Blog RSS Feed` },
       ],
     },
   },
@@ -80,34 +96,25 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Rahul Sharma',
-    jobTitle: 'Software Development Engineer II',
-    description:
-      'Software Development Engineer with expertise in building scalable, AI-driven solutions and optimizing cloud infrastructure.',
+    name: profile.name,
+    jobTitle: profile.title,
+    description: profile.description,
     url: 'https://www.holdmypotion.tech',
-    sameAs: [
-      'https://github.com/holdmypotion',
-      'https://linkedin.com/in/holdmypotion',
-    ],
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Scaler/Interviewbit',
-    },
+    sameAs: [profile.contact.github, profile.contact.linkedin],
+    email: profile.contact.email,
+    worksFor:
+      profile.experience && profile.experience[0]
+        ? {
+            '@type': 'Organization',
+            name: profile.experience[0].company,
+          }
+        : undefined,
     knowsAbout: [
-      'Software Engineering',
-      'Python',
-      'Ruby',
-      'TypeScript',
-      'React',
-      'Next.js',
-      'AWS',
-      'Docker',
-      'Machine Learning',
-      'AI',
-      'DevOps',
-      'Cloud Infrastructure',
+      ...(profile.skills?.languages || []),
+      ...(profile.skills?.frameworks || []),
+      ...(profile.skills?.databases || []),
+      ...(profile.skills?.tools || []),
     ],
-    email: 'holdmypotion@gmail.com',
   };
 
   return (
