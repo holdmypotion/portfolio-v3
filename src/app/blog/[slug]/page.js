@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
         tags: blog.tags || [],
         images: [
           {
-            url: blog.featuredImage || '/wallpaper.jpg',
+            url: blog.featuredImage || '/LandingPage.jpeg',
             width: 1200,
             height: 630,
             alt: blog.title,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
         description:
           blog.description ||
           `Read about ${blog.title} - Technical article by Rahul Sharma`,
-        images: [blog.featuredImage || '/wallpaper.jpg'],
+        images: [blog.featuredImage || '/LandingPage.jpeg'],
       },
       alternates: {
         canonical: `https://www.holdmypotion.tech/blog/${slug}`,
@@ -98,7 +98,7 @@ export default async function BlogPostPage({ params }) {
     '@type': 'BlogPosting',
     headline: blog.title,
     description: blog.description || `Technical article about ${blog.title}`,
-    image: blog.featuredImage || '/wallpaper.jpg',
+    image: blog.featuredImage || '/LandingPage.jpeg',
     author: {
       '@type': 'Person',
       name: 'Rahul Sharma',

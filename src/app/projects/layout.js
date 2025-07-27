@@ -20,7 +20,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/wallpaper.jpg',
+        url: '/LandingPage.jpeg',
         width: 1200,
         height: 630,
         alt: 'Rahul Sharma Projects Portfolio',
@@ -32,7 +32,7 @@ export const metadata = {
     title: 'Projects | Rahul Sharma',
     description:
       'Showcase of software projects including AI-powered applications, web development, and infrastructure solutions.',
-    images: ['/wallpaper.jpg'],
+    images: ['/LandingPage.jpeg'],
   },
   alternates: {
     canonical: 'https://www.holdmypotion.tech/projects',

@@ -20,7 +20,7 @@ export const metadata = {
     type: 'profile',
     images: [
       {
-        url: '/wallpaper.jpg',
+        url: '/LandingPage.jpeg',
         width: 1200,
         height: 630,
         alt: 'Rahul Sharma Resume',
@@ -32,7 +32,7 @@ export const metadata = {
     title: 'Resume | Rahul Sharma',
     description:
       'Professional resume and CV of Rahul Sharma, Software Development Engineer with experience in Python, AI, and cloud infrastructure.',
-    images: ['/wallpaper.jpg'],
+    images: ['/LandingPage.jpeg'],
   },
   alternates: {
     canonical: 'https://www.holdmypotion.tech/resume',

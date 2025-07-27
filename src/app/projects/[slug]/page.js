@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
         type: 'website',
         images: [
           {
-            url: '/wallpaper.jpg',
+            url: '/LandingPage.jpeg',
             width: 1200,
             height: 630,
             alt: `${project.name} - Project by Rahul Sharma`,
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
         description:
           project.description ||
           `Learn about ${project.name} - A software project by Rahul Sharma`,
-        images: ['/wallpaper.jpg'],
+        images: ['/LandingPage.jpeg'],
       },
       alternates: {
         canonical: `https://www.holdmypotion.tech/projects/${slug}`,
