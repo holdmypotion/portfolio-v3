@@ -1,7 +1,7 @@
 ---
 title: 'Docker: Why and How to get started with Docker'
 date: '2021-10-19'
-tags: ['tools']
+tags: ['tools', 'docker', 'devops']
 slug: 'docker-why-and-how-to-get-started-with-docker'
 description: 'Docker is an ecosystem of services that are used to create, run and administrate containers.
 
