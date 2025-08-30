@@ -15,7 +15,6 @@ function getGitHubConfig() {
     return {
       username: 'holdmypotion',
       showcase_repos: [
-        { name: 'loona', publish_status: 'published' },
         { name: 'portfolio-v3', publish_status: 'published' },
         { name: 'mind-sport', publish_status: 'published' },
         { name: 'nvim', publish_status: 'published' },
@@ -219,15 +218,16 @@ export async function getAllGitHubProjects(includeDrafts = false) {
     const repos = await getShowcaseRepositories(includeDrafts);
     const projects = repos.map(transformRepoToProject);
 
+    return projects;
     // Sort by featured status, then by stars, then by last updated
-    return projects.sort((a, b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-
-      if (a.stars !== b.stars) return b.stars - a.stars;
-
-      return new Date(b.updated_at) - new Date(a.updated_at);
-    });
+    // return projects.sort((a, b) => {
+    //   if (a.featured && !b.featured) return -1;
+    //   if (!a.featured && b.featured) return 1;
+    //
+    //   if (a.stars !== b.stars) return b.stars - a.stars;
+    //
+    //   return new Date(b.updated_at) - new Date(a.updated_at);
+    // });
   } catch (error) {
     console.error('Error getting GitHub projects:', error);
     return [];

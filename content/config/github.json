@@ -2,19 +2,7 @@
   "username": "holdmypotion",
   "showcase_repos": [
     {
-      "name": "loona",
-      "publish_status": "draft"
-    },
-    {
-      "name": "smooth-scrolling",
-      "publish_status": "published"
-    },
-    {
-      "name": "portfolio-v3",
-      "publish_status": "published"
-    },
-    {
-      "name": "mind-sport",
+      "name": ".dotfiles",
       "publish_status": "published"
     },
     {
@@ -22,8 +10,20 @@
       "publish_status": "published"
     },
     {
+      "name": "portfolio-v3",
+      "publish_status": "published"
+    },
+    {
       "name": "portfolio-v2",
-      "publish_status": "draft"
+      "publish_status": "published"
+    },
+    {
+      "name": "mind-sport",
+      "publish_status": "published"
+    },
+    {
+      "name": "smooth-scrolling",
+      "publish_status": "published"
     }
   ],
   "display_settings": {
@@ -32,6 +32,6 @@
     "show_language": true,
     "show_topics": true,
     "show_last_updated": true,
-    "max_topics_display": 5
+    "max_topics_display": 15
   }
 }
