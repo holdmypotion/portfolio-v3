@@ -1,12 +1,20 @@
 {
   "name": "rahul sharma",
   "title": "software engineer",
-  "description": "who loves designing systems and building reliable infrastructure. I do most of my work in Neovim and enjoy keeping things minimal and efficient unless I feel like vibe coding on cursor (which is apparently, a lot these  days :p). When I'm not coding, you'll probably find me running, doing primal workouts, spending time with my girlfriend or immersed in a fantasy novel or classic literature.",
+  "description": "who loves designing systems and building reliable infrastructure. I do most of my work in Neovim and enjoy keeping things minimal and efficient unless I feel like vibe coding on cursor (which is apparently, a lot these  days :p). When I'm not coding, you'll probably find me running, doing bouldering, spending time with my girlfriend or immersed in a fantasy novel or classic literature.",
   "experience": [
+    {
+      "company": "HackerRank",
+      "role": "Software Development Engineer II",
+      "period": "Aug 2025 - Present",
+      "highlights": [
+        "Currently, working at HackerRank"
+      ]
+    },
     {
       "company": "Scaler/Interviewbit",
       "role": "Software Development Engineer II",
-      "period": "Jul 2022 - Present",
+      "period": "Jul 2022 - Jul 2025",
       "highlights": [
         "Architected DaddyQuest: Multi-tenant Orchestration Platform for automated call/meeting analysis with 1 lakh+ monthly calls processing",
         "Engineered Mimir: CRM x Redshift ETL Pipeline, saving $440 monthly through custom in-house solution replacing Hevo",
