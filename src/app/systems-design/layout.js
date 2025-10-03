@@ -35,7 +35,7 @@ export const metadata = {
     images: ['/LandingPage.jpeg'],
   },
   alternates: {
-    canonical: 'https://www.holdmypotion.tech/systems-design',
+    canonical: 'https://www.holdmypotion.com/systems-design',
   },
 };
 

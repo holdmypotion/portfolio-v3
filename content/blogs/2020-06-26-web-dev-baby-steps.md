@@ -16,23 +16,23 @@ From here on out, I'll try to present the best way, I believe, that one could st
 
 This is the front face of the app (mobile-app, web-app, or whatever for that matter) that the user interacts with. It all starts with making the design/wireframe/prototype of the app. Now don't be confused here, the website that you see in the front is a Graphical User Interface(GUI). And this GUI is sitting over a backend architecture. This is just a fancy way of saying that the things you interact with on the app, like buttons and stuff, trigger certain tasks to run behind the screen and present the output right in front of you.
 
-![Iceberg diagram showing frontend vs backend](https://holdmypotion.tech/wp-content/uploads/2020/06/icerberg.png)
+![Iceberg diagram showing frontend vs backend](https://holdmypotion.com/wp-content/uploads/2020/06/icerberg.png)
 _Pardon the cliché image!_
 
 Just to be clear, I am not comparing the complexity of front-end with back-end here. This image is just representing that front-end developers curate the part of the app that is visible to users. Hence, designing a beautiful UI (User Interface) and providing the best UX (User Experience) is something to consider.
 
 Using Design software like Figma, Sketch, Adobe XD, etc, wireframes are created. Like the one below. FYI, this is not a real webpage but just a couple of rectangles and text blocks.
 
-![Wireframe example](https://holdmypotion.tech/wp-content/uploads/2020/06/2-2-1024x569.png)
+![Wireframe example](https://holdmypotion.com/wp-content/uploads/2020/06/2-2-1024x569.png)
 _Wireframe_
 
 Now let's talk about turning designs into real webpages.
 
 #### What is What. And What you Need!
 
-HTML creates a barebone structure of the website. Just like a skeleton. And, CSS is used to align that skeleton and also to put skin + makeup on it. CSS is really powerful. Humblebrag: The portfolio website on [https://holdmypotion.tech/about/](https://holdmypotion.tech/about/) is just made on HTML and CSS. Not to forget that I designed before I wrote any HTML or CSS. To be honest, without creating a wireframe, writing CSS is like tormenting yourself. Never go down that shithole, if the website is for official/production purposes.
+HTML creates a barebone structure of the website. Just like a skeleton. And, CSS is used to align that skeleton and also to put skin + makeup on it. CSS is really powerful. Humblebrag: The portfolio website on [https://holdmypotion.com/about/](https://holdmypotion.com/about/) is just made on HTML and CSS. Not to forget that I designed before I wrote any HTML or CSS. To be honest, without creating a wireframe, writing CSS is like tormenting yourself. Never go down that shithole, if the website is for official/production purposes.
 
-![Design example](https://holdmypotion.tech/wp-content/uploads/2020/06/Main-Page-min.png)
+![Design example](https://holdmypotion.com/wp-content/uploads/2020/06/Main-Page-min.png)
 _Again, Just rectangles and text blocks.  
 Designed on Figma_
 
@@ -58,7 +58,7 @@ Again, I absolutely love it!!
 
 Here you go!
 
-![Learning roadmap diagram](https://holdmypotion.tech/wp-content/uploads/2020/06/export-and-del.png)
+![Learning roadmap diagram](https://holdmypotion.com/wp-content/uploads/2020/06/export-and-del.png)
 
 I know, I know! A lot of web developers aren't involved in designing, and me advising you to take that after the basics of HTML and CSS might piss certain people off. And I respect that, but also I quite frankly don't give a shit. I prefer this way because down the road you become a lot more self-sufficient. And if you are someone who is fascinated by the freelance industry, you'll have a lot more options to monetize your skills.
 

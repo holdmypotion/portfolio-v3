@@ -2,7 +2,7 @@ import { getAllBlogs } from '@/lib/blogs';
 import { getAllGitHubProjects } from '@/lib/github';
 
 export default async function sitemap() {
-  const baseUrl = 'https://www.holdmypotion.tech';
+  const baseUrl = 'https://www.holdmypotion.com';
 
   // Get all blog posts
   const blogs = getAllBlogs();

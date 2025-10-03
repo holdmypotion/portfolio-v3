@@ -178,7 +178,7 @@ npm install
 
 2. **Configure your GitHub projects**: Update `content/config/github.json` with your GitHub username and showcase repositories
 
-3. **Configure your domain**: Replace `https://www.holdmypotion.tech` in the following files:
+3. **Configure your domain**: Replace `https://www.holdmypotion.com` in the following files:
 
    - `src/app/layout.js`
    - `src/app/sitemap.js`

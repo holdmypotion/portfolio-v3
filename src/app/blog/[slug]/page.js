@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
         images: [blog.featuredImage || '/LandingPage.jpeg'],
       },
       alternates: {
-        canonical: `https://www.holdmypotion.tech/blog/${slug}`,
+        canonical: `https://www.holdmypotion.com/blog/${slug}`,
       },
     };
   } catch (error) {
@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }) {
     author: {
       '@type': 'Person',
       name: 'Rahul Sharma',
-      url: 'https://www.holdmypotion.tech',
+      url: 'https://www.holdmypotion.com',
     },
     publisher: {
       '@type': 'Person',
@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }) {
     datePublished: blog.date,
     dateModified: blog.date,
     keywords: blog.tags?.join(', ') || '',
-    url: `https://www.holdmypotion.tech/blog/${slug}`,
+    url: `https://www.holdmypotion.com/blog/${slug}`,
   };
 
   return (

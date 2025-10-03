@@ -26,7 +26,7 @@ try {
 }
 
 export const metadata = {
-  metadataBase: new URL('https://www.holdmypotion.tech/'),
+  metadataBase: new URL('https://www.holdmypotion.com/'),
   title: {
     default: `${profile.name} - ${profile.title}`,
     template: `%s | ${profile.name}`,
@@ -59,7 +59,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.holdmypotion.tech',
+    url: 'https://www.holdmypotion.com',
     title: `${profile.name} - ${profile.title}`,
     description: profile.description,
     siteName: `${profile.name} Portfolio`,
@@ -83,7 +83,7 @@ export const metadata = {
     google: 'your-google-verification-code', // Replace with actual verification code
   },
   alternates: {
-    canonical: 'https://www.holdmypotion.tech',
+    canonical: 'https://www.holdmypotion.com',
     types: {
       'application/rss+xml': [
         { url: '/feed.xml', title: `${profile.name} Blog RSS Feed` },
@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
     name: profile.name,
     jobTitle: profile.title,
     description: profile.description,
-    url: 'https://www.holdmypotion.tech',
+    url: 'https://www.holdmypotion.com',
     sameAs: [profile.contact.github, profile.contact.linkedin],
     email: profile.contact.email,
     worksFor:
@@ -122,7 +122,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
-        <link rel='canonical' href='https://www.holdmypotion.tech' />
+        <link rel='canonical' href='https://www.holdmypotion.com' />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

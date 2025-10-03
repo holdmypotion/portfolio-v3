@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
         images: ['/LandingPage.jpeg'],
       },
       alternates: {
-        canonical: `https://www.holdmypotion.tech/projects/${slug}`,
+        canonical: `https://www.holdmypotion.com/projects/${slug}`,
       },
     };
   } catch (error) {
@@ -130,13 +130,13 @@ export default async function ProjectPage({ params }) {
     '@type': 'SoftwareApplication',
     name: project.name,
     description: project.description,
-    url: project.live || `https://www.holdmypotion.tech/projects/${slug}`,
+    url: project.live || `https://www.holdmypotion.com/projects/${slug}`,
     codeRepository: project.github,
     programmingLanguage: project.tech?.split(', ') || [],
     author: {
       '@type': 'Person',
       name: 'Rahul Sharma',
-      url: 'https://www.holdmypotion.tech',
+      url: 'https://www.holdmypotion.com',
     },
     applicationCategory: 'WebApplication',
     operatingSystem: 'Web Browser',
