@@ -1,11 +1,18 @@
 {
   "resumes": [
     {
+      "version": "Sept25",
+      "date": "2025-09-01",
+      "filename": "RahulSharma_Sept25.pdf",
+      "latest": true,
+      "changes": "Latest version with current experience and projects"
+    },
+    {
       "version": "Jun25",
       "date": "2025-06-01",
       "filename": "RahulSharma_Jun25.pdf",
-      "latest": true,
-      "changes": "Latest version with current experience and projects"
+      "latest": false,
+      "changes": "Updated with June 2025 projects and experience"
     },
     {
       "version": "May25",
